@@ -21,7 +21,7 @@ All notes are in french and mix of british.
 - dry_run_live -> testing.
 - dry_run_win -> minimum 7days in ++.
 
-## Series live
+## Series live_n
 
 
 ## What does we see ? 
