@@ -8,3 +8,4 @@ Day         Profit USDT    Profit EUR    Trades
 2022-02-12  5.808 USDT     5.113 EUR     2 trades
 2022-02-11  5.238 USDT     4.612 EUR     2 trades
 2022-02-10  0.000 USDT     0.000 EUR     0 trades
+

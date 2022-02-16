@@ -1,0 +1,668 @@
+
+
+SELECTED
+
+- MOT 7
+- Full stack
+- Volatilité
+- Beaucoup de choix
+
+analyse, elle souffre en bear market. 84.5% WR.
+Bull 89.3%.
+# config-bt-4--days90
+docker-compose run --rm freqtrade backtesting --config user_data/config-bt-4.json --strategy ClucHAnix_hhll
+P	ADP	WR	ADT	MOT	DD	SL	UCSL	RSL	USL	TSL	USS	ROI	IRIBS	PAE	notes					notesi!
+155.16%	1.74%	89.2%	12.45	9	8.84%	-0.99	y	y	/	f	y	y	F	F	UTSL+ROI100%WR.
+208.84%	2.35%	89.3%	11.4	7	8.30%	-0.99	y	y	y	f	y	y	f	f	
+
+
+
+# config-bt-4--days30
+docker-compose run --rm freqtrade backtesting --config user_data/config-bt-4.json --strategy ClucHAnix_hhll
+P	ADP	WR	ADT	MOT	DD	SL	UCSL	RSL	USL	TSL	USS	ROI	IRIBS	PAE	notes					notesi!
+13.31%	0.44	84.9%	9.47	9	8.73%	-0.99	y	y	/	f	y	Y	F	F	SELECTED
+14.28%	0.48%	84.5%	8.37	7	8.3%	-0.99	y	y	/	f	y	y	f	f
+
+
+# config-bt-4--days147 (--timerange=20210911-20220205) (4.9 mois)
+docker-compose run --rm freqtrade backtesting --timerange=20210911-20220205 --config user_data/config-bt-4.json --strategy ClucHAnix_hhll
+P	ADP	WR	ADT	MOT	DD	SL	UCSL	RSL	USL	TSL	USS	ROI	IRIBS	PAE	notes					notesi!
+2688.89%18.29%	91%	14.34	7	8.3%	-0.99	y	y	/	f	y	y	f	f	
+
+
+# config-bt-4-BINANCE --days147 (--timerange=20210911-20220205) (4.9 mois)
+docker-compose run --rm freqtrade backtesting --timerange=20210911-20220205 --config user_data/config-bt-4-binance.json --strategy ClucHAnix_hhll
+P	ADP	WR	ADT	MOT	DD	SL	UCSL	RSL	USL	TSL	USS	ROI	IRIBS	PAE	notes					notesi!
+72.82%	0.5%	86.8%	5.39	7	13.68%	-0.99	y	y	/	f	y	y	f	f	
+
+
+# config-bt-4-BINANCE --days147 (--timerange=20210911-20220205) (4.9 mois)
+========================================================== BUY TAG STATS ===========================================================
+|   TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|-------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+| TOTAL |    793 |           0.50 |         399.18 |           728.196 |          72.82 |        1:51:00 |   688     0   105  86.8 |
+========================================================= SELL REASON STATS ==========================================================
+|            Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|------------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+|     trailing_stop_loss |     466 |    466     0     0   100 |           1.49 |         692.37 |          1490.12  |          98.91 |
+|                    roi |     222 |    222     0     0   100 |           2.02 |         449.18 |           964.268 |          64.17 |
+| sell_stoploss_deadfish |      86 |      0     0    86     0 |          -7.19 |        -618.29 |         -1438.17  |         -88.33 |
+|            sell_signal |      19 |      0     0    19     0 |          -6.53 |        -124.08 |          -288.023 |         -17.73 |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2021-09-11 00:00:00 |
+| Backtesting to         | 2022-02-05 00:00:00 |
+| Max open trades        | 7                   |
+|                        |                     |
+| Total/Daily Avg Trades | 793 / 5.39          |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 1728.196 USDT       |
+| Absolute profit        | 728.196 USDT        |
+| Total profit %         | 72.82%              |
+| Trades per day         | 5.39                |
+| Avg. daily profit %    | 0.50%               |
+| Avg. stake amount      | 216.883 USDT        |
+| Total trade volume     | 171988.205 USDT     |
+|                        |                     |
+| Best Pair              | SHIB/USDT 93.22%    |
+| Worst Pair             | CRV/USDT -35.88%    |
+| Best trade             | PYR/USDT 4.34%      |
+| Worst trade            | PYR/USDT -19.21%    |
+| Best day               | 67.244 USDT         |
+| Worst day              | -98.741 USDT        |
+| Days win/draw/lose     | 98 / 25 / 24        |
+| Avg. Duration Winners  | 1:12:00             |
+| Avg. Duration Loser    | 6:02:00             |
+| Rejected Buy signals   | 16574               |
+|                        |                     |
+| Min balance            | 1002.127 USDT       |
+| Max balance            | 1895.034 USDT       |
+| Drawdown (Account)     | 13.68%              |
+| Drawdown               | 259.235 USDT        |
+| Drawdown high          | 895.034 USDT        |
+| Drawdown low           | 635.799 USDT        |
+| Drawdown Start         | 2022-01-21 00:10:00 |
+| Drawdown End           | 2022-01-27 03:45:00 |
+| Market change          | -1.31%              |
+================================================
+# config-bt-4--days147 (--timerange=20210911-20220205) (4.9 mois)
+========================================================== BUY TAG STATS ===========================================================
+|   TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|-------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+| TOTAL |   2108 |           1.12 |        2371.50 |         26888.930 |        2688.89 |        1:33:00 |  1919     0   189  91.0 |
+========================================================= SELL REASON STATS ==========================================================
+|            Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|------------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+|     trailing_stop_loss |    1089 |   1089     0     0   100 |           1.57 |        1707.35 |         26152.1   |         243.91 |
+|                    roi |     830 |    830     0     0   100 |           2.42 |        2005.19 |         26633.5   |         286.46 |
+| sell_stoploss_deadfish |     150 |      0     0   150     0 |          -7.43 |       -1113.93 |        -21773     |        -159.13 |
+|            sell_signal |      34 |      0     0    34     0 |          -5.99 |        -203.51 |         -3771.43  |         -29.07 |
+| sell_stoploss_p_48_1_2 |       2 |      0     0     2     0 |          -4.69 |          -9.38 |          -121.956 |          -1.34 |
+| sell_stoploss_p_48_1_1 |       2 |      0     0     2     0 |          -5.03 |         -10.05 |          -123.035 |          -1.44 |
+| sell_stoploss_p_24_1_1 |       1 |      0     0     1     0 |          -4.17 |          -4.17 |          -107.21  |          -0.6  |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2021-09-11 00:00:00 |
+| Backtesting to         | 2022-02-05 00:00:00 |
+| Max open trades        | 7                   |
+|                        |                     |
+| Total/Daily Avg Trades | 2108 / 14.34        |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 27888.930 USDT      |
+| Absolute profit        | 26888.930 USDT      |
+| Total profit %         | 2688.89%            |
+| Trades per day         | 14.34               |
+| Avg. daily profit %    | 18.29%              |
+| Avg. stake amount      | 1528.092 USDT       |
+| Total trade volume     | 3221218.155 USDT    |
+|                        |                     |
+| Best Pair              | RMRK/USDT 283.61%   |
+| Worst Pair             | CRV/USDT -15.96%    |
+| Best trade             | QRDO/USDT 10.29%    |
+| Worst trade            | PYR/USDT -19.31%    |
+| Best day               | 1189.454 USDT       |
+| Worst day              | -1366.951 USDT      |
+| Days win/draw/lose     | 122 / 1 / 24        |
+| Avg. Duration Winners  | 1:05:00             |
+| Avg. Duration Loser    | 6:19:00             |
+| Rejected Buy signals   | 43503               |
+|                        |                     |
+| Min balance            | 1001.835 USDT       |
+| Max balance            | 27893.553 USDT      |
+| Drawdown (Account)     | 8.30%               |
+| Drawdown               | 2139.023 USDT       |
+| Drawdown high          | 24786.807 USDT      |
+| Drawdown low           | 22647.784 USDT      |
+| Drawdown Start         | 2022-01-20 22:30:00 |
+| Drawdown End           | 2022-01-22 09:20:00 |
+| Market change          | 61.88%              |
+================================================
+# config-bt-4--days30
+========================================================== BUY TAG STATS ===========================================================
+|   TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|-------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+| TOTAL |    251 |           0.39 |          98.78 |           142.761 |          14.28 |        2:07:00 |   212     0    39  84.5 |
+========================================================= SELL REASON STATS ==========================================================
+|            Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|------------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+|     trailing_stop_loss |     120 |    120     0     0   100 |           1.53 |         183.04 |           265.183 |          26.15 |
+|                    roi |      91 |     91     0     0   100 |           2.15 |         195.41 |           279.417 |          27.92 |
+| sell_stoploss_deadfish |      36 |      0     0    36     0 |          -7.32 |        -263.54 |          -379.425 |         -37.65 |
+|            sell_signal |       3 |      0     0     3     0 |          -5.42 |         -16.25 |           -22.593 |          -2.32 |
+|             force_sell |       1 |      1     0     0   100 |           0.11 |           0.11 |             0.179 |           0.02 |
+======================================================= LEFT OPEN TRADES REPORT =======================================================
+|     Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|----------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+| ADS/USDT |      1 |           0.11 |           0.11 |             0.179 |           0.02 |        0:40:00 |     1     0     0   100 |
+|    TOTAL |      1 |           0.11 |           0.11 |             0.179 |           0.02 |        0:40:00 |     1     0     0   100 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2022-01-08 14:00:00 |
+| Backtesting to         | 2022-02-07 16:45:00 |
+| Max open trades        | 7                   |
+|                        |                     |
+| Total/Daily Avg Trades | 251 / 8.37          |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 1142.761 USDT       |
+| Absolute profit        | 142.761 USDT        |
+| Total profit %         | 14.28%              |
+| Trades per day         | 8.37                |
+| Avg. daily profit %    | 0.48%               |
+| Avg. stake amount      | 143.982 USDT        |
+| Total trade volume     | 36139.480 USDT      |
+|                        |                     |
+| Best Pair              | RMRK/USDT 35.89%    |
+| Worst Pair             | RNDR/USDT -15.95%   |
+| Best trade             | ADS/USDT 3.69%      |
+| Worst trade            | ELON/USDT -12.34%   |
+| Best day               | 43.712 USDT         |
+| Worst day              | -41.332 USDT        |
+| Days win/draw/lose     | 17 / 0 / 7          |
+| Avg. Duration Winners  | 1:20:00             |
+| Avg. Duration Loser    | 6:21:00             |
+| Rejected Buy signals   | 14807               |
+|                        |                     |
+| Min balance            | 935.444 USDT        |
+| Max balance            | 1142.761 USDT       |
+| Drawdown (Account)     | 8.30%               |
+| Drawdown               | 84.614 USDT         |
+| Drawdown high          | 20.058 USDT         |
+| Drawdown low           | -64.556 USDT        |
+| Drawdown Start         | 2022-01-20 22:30:00 |
+| Drawdown End           | 2022-01-22 09:20:00 |
+| Market change          | -9.13%              |
+================================================
+
+========================================================== BUY TAG STATS ===========================================================
+|   TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|-------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+| TOTAL |    284 |           0.42 |         117.97 |           133.081 |          13.31 |        2:07:00 |   241     0    43  84.9 |
+========================================================= SELL REASON STATS ==========================================================
+|            Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|------------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+|     trailing_stop_loss |     136 |    136     0     0   100 |           1.54 |         209.54 |           236.109 |          23.28 |
+|                    roi |     104 |    104     0     0   100 |           2.13 |         221.42 |           246.184 |          24.6  |
+| sell_stoploss_deadfish |      40 |      0     0    40     0 |          -7.42 |        -296.85 |          -331.625 |         -32.98 |
+|            sell_signal |       3 |      0     0     3     0 |          -5.42 |         -16.25 |           -17.724 |          -1.81 |
+|             force_sell |       1 |      1     0     0   100 |           0.11 |           0.11 |             0.138 |           0.01 |
+======================================================= LEFT OPEN TRADES REPORT =======================================================
+|     Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|----------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+| ADS/USDT |      1 |           0.11 |           0.11 |             0.138 |           0.01 |        0:40:00 |     1     0     0   100 |
+|    TOTAL |      1 |           0.11 |           0.11 |             0.138 |           0.01 |        0:40:00 |     1     0     0   100 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2022-01-08 14:00:00 |
+| Backtesting to         | 2022-02-07 16:45:00 |
+| Max open trades        | 9                   |
+|                        |                     |
+| Total/Daily Avg Trades | 284 / 9.47          |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 1133.081 USDT       |
+| Absolute profit        | 133.081 USDT        |
+| Total profit %         | 13.31%              |
+| Trades per day         | 9.47                |
+| Avg. daily profit %    | 0.44%               |
+| Avg. stake amount      | 112.043 USDT        |
+| Total trade volume     | 31820.179 USDT      |
+|                        |                     |
+| Best Pair              | RMRK/USDT 45.02%    |
+| Worst Pair             | CRV/USDT -19.62%    |
+| Best trade             | RMRK/USDT 5.44%     |
+| Worst trade            | ELON/USDT -12.34%   |
+| Best day               | 32.679 USDT         |
+| Worst day              | -27.740 USDT        |
+| Days win/draw/lose     | 16 / 0 / 8          |
+| Avg. Duration Winners  | 1:23:00             |
+| Avg. Duration Loser    | 6:12:00             |
+| Rejected Buy signals   | 10044               |
+|                        |                     |
+| Min balance            | 933.625 USDT        |
+| Max balance            | 1133.081 USDT       |
+| Drawdown (Account)     | 8.73%               |
+| Drawdown               | 89.332 USDT         |
+| Drawdown high          | 22.957 USDT         |
+| Drawdown low           | -66.375 USDT        |
+| Drawdown Start         | 2022-01-21 00:35:00 |
+| Drawdown End           | 2022-01-22 09:20:00 |
+| Market change          | -9.13%              |
+================================================
+
+
+
+
+# config-bt-4--days90
+========================================================== BUY TAG STATS ===========================================================
+|   TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|-------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+| TOTAL |    963 |           0.81 |         782.48 |          2543.883 |         254.39 |        1:44:00 |   861     0   102  89.4 |
+========================================================= SELL REASON STATS ==========================================================
+|            Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|------------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+|     trailing_stop_loss |     514 |    514     0     0   100 |           1.54 |         793.28 |          2828.94  |         132.21 |
+|                    roi |     347 |    347     0     0   100 |           2.17 |         754.44 |          2631.02  |         125.74 |
+| sell_stoploss_deadfish |      84 |      0     0    84     0 |          -7.46 |        -626.49 |         -2443.49  |        -104.42 |
+|            sell_signal |      15 |      0     0    15     0 |          -8.37 |        -125.59 |          -433.813 |         -20.93 |
+| sell_stoploss_p_48_1_2 |       1 |      0     0     1     0 |          -4.83 |          -4.83 |           -13.262 |          -0.8  |
+| sell_stoploss_p_48_1_1 |       1 |      0     0     1     0 |          -4.17 |          -4.17 |           -11.873 |          -0.7  |
+| sell_stoploss_p_24_1_1 |       1 |      0     0     1     0 |          -4.17 |          -4.17 |           -13.638 |          -0.69 |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2021-11-12 14:00:00 |
+| Backtesting to         | 2022-02-10 09:30:00 |
+| Max open trades        | 6                   |
+|                        |                     |
+| Total/Daily Avg Trades | 963 / 10.82         |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 3543.883 USDT       |
+| Absolute profit        | 2543.883 USDT       |
+| Total profit %         | 254.39%             |
+| Trades per day         | 10.82               |
+| Avg. daily profit %    | 2.86%               |
+| Avg. stake amount      | 359.882 USDT        |
+| Total trade volume     | 346565.947 USDT     |
+|                        |                     |
+| Best Pair              | RMRK/USDT 146.67%   |
+| Worst Pair             | AXS/USDT -18.14%    |
+| Best trade             | AI/USDT 5.30%       |
+| Worst trade            | PYR/USDT -19.31%    |
+| Best day               | 149.625 USDT        |
+| Worst day              | -142.056 USDT       |
+| Days win/draw/lose     | 66 / 1 / 17         |
+| Avg. Duration Winners  | 1:14:00             |
+| Avg. Duration Loser    | 5:54:00             |
+| Rejected Buy signals   | 43264               |
+|                        |                     |
+| Min balance            | 1002.809 USDT       |
+| Max balance            | 3543.883 USDT       |
+| Drawdown (Account)     | 13.89%              |
+| Drawdown               | 247.054 USDT        |
+| Drawdown high          | 778.333 USDT        |
+| Drawdown low           | 531.279 USDT        |
+| Drawdown Start         | 2021-12-04 02:00:00 |
+| Drawdown End           | 2021-12-04 09:20:00 |
+| Market change          | -27.01%             |
+================================================
+
+========================================================== BUY TAG STATS ===========================================================
+|   TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|-------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+| TOTAL |    901 |           0.82 |         740.27 |          3180.664 |         318.07 |        1:42:00 |   806     0    95  89.5 |
+========================================================= SELL REASON STATS ==========================================================
+|            Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|------------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+|     trailing_stop_loss |     485 |    485     0     0   100 |           1.54 |         748.41 |          3571.4   |         149.68 |
+|                    roi |     321 |    321     0     0   100 |           2.19 |         704.4  |          3270.99  |         140.88 |
+| sell_stoploss_deadfish |      79 |      0     0    79     0 |          -7.49 |        -591.42 |         -3098.99  |        -118.28 |
+|            sell_signal |      14 |      0     0    14     0 |          -8.01 |        -112.13 |          -527.423 |         -22.43 |
+| sell_stoploss_p_48_1_2 |       1 |      0     0     1     0 |          -4.83 |          -4.83 |           -17.319 |          -0.97 |
+| sell_stoploss_p_24_1_1 |       1 |      0     0     1     0 |          -4.17 |          -4.17 |           -17.989 |          -0.83 |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2021-11-12 14:00:00 |
+| Backtesting to         | 2022-02-10 09:30:00 |
+| Max open trades        | 5                   |
+|                        |                     |
+| Total/Daily Avg Trades | 901 / 10.12         |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 4180.664 USDT       |
+| Absolute profit        | 3180.664 USDT       |
+| Total profit %         | 318.07%             |
+| Trades per day         | 10.12               |
+| Avg. daily profit %    | 3.57%               |
+| Avg. stake amount      | 482.012 USDT        |
+| Total trade volume     | 434292.880 USDT     |
+|                        |                     |
+| Best Pair              | RMRK/USDT 153.20%   |
+| Worst Pair             | ATOM/USDT -20.06%   |
+| Best trade             | AI/USDT 5.30%       |
+| Worst trade            | PYR/USDT -19.31%    |
+| Best day               | 187.287 USDT        |
+| Worst day              | -165.265 USDT       |
+| Days win/draw/lose     | 65 / 1 / 18         |
+| Avg. Duration Winners  | 1:13:00             |
+| Avg. Duration Loser    | 5:51:00             |
+| Rejected Buy signals   | 53406               |
+|                        |                     |
+| Min balance            | 1003.371 USDT       |
+| Max balance            | 4180.664 USDT       |
+| Drawdown (Account)     | 14.58%              |
+| Drawdown               | 281.949 USDT        |
+| Drawdown high          | 934.092 USDT        |
+| Drawdown low           | 652.143 USDT        |
+| Drawdown Start         | 2021-12-04 02:00:00 |
+| Drawdown End           | 2021-12-04 09:20:00 |
+| Market change          | -27.01%             |
+================================================
+
+
+========================================================== BUY TAG STATS ===========================================================
+|   TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|-------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+| TOTAL |   1015 |           0.80 |         812.66 |          2088.376 |         208.84 |        1:44:00 |   906     0   109  89.3 |
+========================================================= SELL REASON STATS ==========================================================
+|            Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|------------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+|     trailing_stop_loss |     544 |    544     0     0   100 |           1.55 |         841.57 |          2360.48  |         120.22 |
+|                    roi |     362 |    362     0     0   100 |           2.19 |         791.7  |          2168.62  |         113.1  |
+| sell_stoploss_deadfish |      90 |      0     0    90     0 |          -7.41 |        -667.14 |         -2029.73  |         -95.31 |
+|            sell_signal |      16 |      0     0    16     0 |          -8.77 |        -140.31 |          -380.047 |         -20.04 |
+| sell_stoploss_p_48_1_2 |       1 |      0     0     1     0 |          -4.83 |          -4.83 |           -10.575 |          -0.69 |
+| sell_stoploss_p_48_1_1 |       1 |      0     0     1     0 |          -4.17 |          -4.17 |            -9.514 |          -0.6  |
+| sell_stoploss_p_24_1_1 |       1 |      0     0     1     0 |          -4.17 |          -4.17 |           -10.859 |          -0.6  |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2021-11-12 14:00:00 |
+| Backtesting to         | 2022-02-10 09:30:00 |
+| Max open trades        | 7                   |
+|                        |                     |
+| Total/Daily Avg Trades | 1015 / 11.4         |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 3088.376 USDT       |
+| Absolute profit        | 2088.376 USDT       |
+| Total profit %         | 208.84%             |
+| Trades per day         | 11.4                |
+| Avg. daily profit %    | 2.35%               |
+| Avg. stake amount      | 282.421 USDT        |
+| Total trade volume     | 286657.398 USDT     |
+|                        |                     |
+| Best Pair              | RMRK/USDT 146.67%   |
+| Worst Pair             | AXS/USDT -18.14%    |
+| Best trade             | AI/USDT 5.30%       |
+| Worst trade            | PYR/USDT -19.31%    |
+| Best day               | 120.481 USDT        |
+| Worst day              | -138.460 USDT       |
+| Days win/draw/lose     | 65 / 1 / 18         |
+| Avg. Duration Winners  | 1:13:00             |
+| Avg. Duration Loser    | 6:00:00             |
+| Rejected Buy signals   | 31121               |
+|                        |                     |
+| Min balance            | 1002.408 USDT       |
+| Max balance            | 3088.376 USDT       |
+| Drawdown (Account)     | 8.30%               |
+| Drawdown               | 216.664 USDT        |
+| Drawdown high          | 1611.978 USDT       |
+| Drawdown low           | 1395.314 USDT       |
+| Drawdown Start         | 2022-01-20 22:30:00 |
+| Drawdown End           | 2022-01-22 09:20:00 |
+| Market change          | -27.01%             |
+================================================
+
+
+
+========================================================== BUY TAG STATS ===========================================================
+|   TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|-------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+| TOTAL |   1123 |           0.73 |         816.21 |          1376.615 |         137.66 |        1:42:00 |  1002     0   121  89.2 |
+========================================================= SELL REASON STATS ==========================================================
+|            Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|------------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+|     trailing_stop_loss |     597 |    597     0     0   100 |           1.55 |         924.49 |          1686.2   |         102.72 |
+|                    roi |     405 |    405     0     0   100 |           2.32 |         940.28 |          1646.4   |         104.48 |
+| sell_stoploss_deadfish |      99 |      0     0    99     0 |          -7.44 |        -736.77 |         -1420.55  |         -81.86 |
+|            sell_signal |      13 |      0     0    13     0 |          -7.68 |         -99.83 |          -181.008 |         -11.09 |
+|              stop_loss |       6 |      0     0     6     0 |         -33.13 |        -198.8  |          -333.825 |         -22.09 |
+| sell_stoploss_p_48_1_2 |       1 |      0     0     1     0 |          -4.83 |          -4.83 |            -7.069 |          -0.54 |
+| sell_stoploss_p_48_1_1 |       1 |      0     0     1     0 |          -4.17 |          -4.17 |            -6.327 |          -0.46 |
+| sell_stoploss_p_24_1_1 |       1 |      0     0     1     0 |          -4.17 |          -4.17 |            -7.197 |          -0.46 |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2021-11-12 14:00:00 |
+| Backtesting to         | 2022-02-10 09:30:00 |
+| Max open trades        | 9                   |
+|                        |                     |
+| Total/Daily Avg Trades | 1123 / 12.62        |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 2376.615 USDT       |
+| Absolute profit        | 1376.615 USDT       |
+| Total profit %         | 137.66%             |
+| Trades per day         | 12.62               |
+| Avg. daily profit %    | 1.55%               |
+| Avg. stake amount      | 182.635 USDT        |
+| Total trade volume     | 205099.411 USDT     |
+|                        |                     |
+| Best Pair              | RMRK/USDT 174.48%   |
+| Worst Pair             | BCH/USDT -33.13%    |
+| Best trade             | BLOK/USDT 10.29%    |
+| Worst trade            | DOT/USDT -33.13%    |
+| Best day               | 84.386 USDT         |
+| Worst day              | -146.409 USDT       |
+| Days win/draw/lose     | 66 / 1 / 17         |
+| Avg. Duration Winners  | 1:13:00             |
+| Avg. Duration Loser    | 5:45:00             |
+| Rejected Buy signals   | 21882               |
+|                        |                     |
+| Min balance            | 1001.873 USDT       |
+| Max balance            | 2376.615 USDT       |
+| Drawdown (Account)     | 16.75%              |
+| Drawdown               | 246.195 USDT        |
+| Drawdown high          | 470.213 USDT        |
+| Drawdown low           | 224.019 USDT        |
+| Drawdown Start         | 2021-12-04 04:50:00 |
+| Drawdown End           | 2021-12-04 05:30:00 |
+| Market change          | -27.01%             |
+================================================
+
+========================================================== BUY TAG STATS ===========================================================
+|   TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|-------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+| TOTAL |   1329 |           0.36 |         477.72 |           634.811 |          63.48 |        1:15:00 |  1107     0   222  83.3 |
+========================================================= SELL REASON STATS ==========================================================
+|            Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|------------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+|     trailing_stop_loss |     679 |    679     0     0   100 |           1.56 |        1060.57 |          1549.63  |         117.84 |
+|                    roi |     427 |    427     0     0   100 |           2.52 |        1075.9  |          1514.37  |         119.54 |
+|              stop_loss |     193 |      0     0   193     0 |          -7.68 |       -1483.17 |         -2164.02  |        -164.8  |
+| sell_stoploss_deadfish |      25 |      0     0    25     0 |          -6.7  |        -167.41 |          -253.42  |         -18.6  |
+|            sell_signal |       2 |      1     0     1  50.0 |           2.5  |           4.99 |             4.837 |           0.55 |
+| sell_stoploss_p_48_1_2 |       1 |      0     0     1     0 |          -4.83 |          -4.83 |            -5.754 |          -0.54 |
+| sell_stoploss_p_48_1_1 |       1 |      0     0     1     0 |          -4.17 |          -4.17 |            -5.065 |          -0.46 |
+| sell_stoploss_p_24_1_1 |       1 |      0     0     1     0 |          -4.17 |          -4.17 |            -5.76  |          -0.46 |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2021-11-12 14:00:00 |
+| Backtesting to         | 2022-02-10 09:30:00 |
+| Max open trades        | 9                   |
+|                        |                     |
+| Total/Daily Avg Trades | 1329 / 14.93        |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 1634.811 USDT       |
+| Absolute profit        | 634.811 USDT        |
+| Total profit %         | 63.48%              |
+| Trades per day         | 14.93               |
+| Avg. daily profit %    | 0.71%               |
+| Avg. stake amount      | 145.207 USDT        |
+| Total trade volume     | 192980.011 USDT     |
+|                        |                     |
+| Best Pair              | RMRK/USDT 147.65%   |
+| Worst Pair             | FIL/USDT -31.80%    |
+| Best trade             | ATOM/USDT 10.29%    |
+| Worst trade            | GALAX/USDT -7.68%   |
+| Best day               | 69.486 USDT         |
+| Worst day              | -279.785 USDT       |
+| Days win/draw/lose     | 63 / 1 / 20         |
+| Avg. Duration Winners  | 1:00:00             |
+| Avg. Duration Loser    | 2:31:00             |
+| Rejected Buy signals   | 14137               |
+|                        |                     |
+| Min balance            | 969.210 USDT        |
+| Max balance            | 1634.811 USDT       |
+| Drawdown (Account)     | 30.10%              |
+| Drawdown               | 410.101 USDT        |
+| Drawdown high          | 362.531 USDT        |
+| Drawdown low           | -47.570 USDT        |
+| Drawdown Start         | 2021-12-04 04:50:00 |
+| Drawdown End           | 2021-12-04 05:35:00 |
+| Market change          | -27.01%             |
+================================================
+
+
+========================================================== BUY TAG STATS ===========================================================
+|   TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|-------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+| TOTAL |   1170 |           0.21 |         250.82 |           259.053 |          25.91 |        2:08:00 |   908     0   262  77.6 |
+========================================================= SELL REASON STATS ==========================================================
+|            Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|------------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+|                    roi |     907 |    907     0     0   100 |           2.43 |        2204.68 |          2878.82  |         244.96 |
+|              stop_loss |     227 |      0     0   227     0 |          -7.68 |       -1744.45 |         -2334.78  |        -193.83 |
+| sell_stoploss_deadfish |      30 |      0     0    30     0 |          -6.66 |        -199.9  |          -272.114 |         -22.21 |
+|            sell_signal |       3 |      1     0     2  33.3 |           1.22 |           3.65 |             2.816 |           0.41 |
+| sell_stoploss_p_48_1_2 |       1 |      0     0     1     0 |          -4.83 |          -4.83 |            -5.491 |          -0.54 |
+| sell_stoploss_p_48_1_1 |       1 |      0     0     1     0 |          -4.17 |          -4.17 |            -4.805 |          -0.46 |
+| sell_stoploss_p_24_1_1 |       1 |      0     0     1     0 |          -4.17 |          -4.17 |            -5.397 |          -0.46 |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2021-11-12 14:00:00 |
+| Backtesting to         | 2022-02-10 09:30:00 |
+| Max open trades        | 9                   |
+|                        |                     |
+| Total/Daily Avg Trades | 1170 / 13.15        |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 1259.053 USDT       |
+| Absolute profit        | 259.053 USDT        |
+| Total profit %         | 25.91%              |
+| Trades per day         | 13.15               |
+| Avg. daily profit %    | 0.29%               |
+| Avg. stake amount      | 132.172 USDT        |
+| Total trade volume     | 154641.403 USDT     |
+|                        |                     |
+| Best Pair              | RMRK/USDT 126.65%   |
+| Worst Pair             | ENJ/USDT -44.10%    |
+| Best trade             | ATOM/USDT 10.29%    |
+| Worst trade            | GALAX/USDT -7.68%   |
+| Best day               | 59.126 USDT         |
+| Worst day              | -318.003 USDT       |
+| Days win/draw/lose     | 61 / 1 / 22         |
+| Avg. Duration Winners  | 1:49:00             |
+| Avg. Duration Loser    | 3:12:00             |
+| Rejected Buy signals   | 31149               |
+|                        |                     |
+| Min balance            | 928.607 USDT        |
+| Max balance            | 1433.975 USDT       |
+| Drawdown (Account)     | 32.38%              |
+| Drawdown               | 440.908 USDT        |
+| Drawdown high          | 361.498 USDT        |
+| Drawdown low           | -79.410 USDT        |
+| Drawdown Start         | 2021-12-03 18:55:00 |
+| Drawdown End           | 2021-12-04 05:35:00 |
+| Market change          | -27.01%             |
+================================================
+========================================================== BUY TAG STATS ===========================================================
+|   TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|-------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+| TOTAL |   1108 |           0.78 |         865.23 |          1551.634 |         155.16 |        1:45:00 |   988     0   120  89.2 |
+========================================================= SELL REASON STATS ==========================================================
+|            Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|------------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+|     trailing_stop_loss |     597 |    597     0     0   100 |           1.55 |         924.49 |          1765.63  |         102.72 |
+|                    roi |     391 |    391     0     0   100 |           2.16 |         845.77 |          1586.85  |          93.97 |
+| sell_stoploss_deadfish |      99 |      0     0    99     0 |          -7.44 |        -736.77 |         -1497.46  |         -81.86 |
+|            sell_signal |      18 |      0     0    18     0 |          -8.62 |        -155.11 |          -281.821 |         -17.23 |
+| sell_stoploss_p_48_1_2 |       1 |      0     0     1     0 |          -4.83 |          -4.83 |            -7.402 |          -0.54 |
+| sell_stoploss_p_48_1_1 |       1 |      0     0     1     0 |          -4.17 |          -4.17 |            -6.625 |          -0.46 |
+| sell_stoploss_p_24_1_1 |       1 |      0     0     1     0 |          -4.17 |          -4.17 |            -7.536 |          -0.46 |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2021-11-12 14:00:00 |
+| Backtesting to         | 2022-02-10 09:30:00 |
+| Max open trades        | 9                   |
+|                        |                     |
+| Total/Daily Avg Trades | 1108 / 12.45        |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 2551.634 USDT       |
+| Absolute profit        | 1551.634 USDT       |
+| Total profit %         | 155.16%             |
+| Trades per day         | 12.45               |
+| Avg. daily profit %    | 1.74%               |
+| Avg. stake amount      | 192.063 USDT        |
+| Total trade volume     | 212806.171 USDT     |
+|                        |                     |
+| Best Pair              | RMRK/USDT 164.19%   |
+| Worst Pair             | AXS/USDT -17.04%    |
+| Best trade             | RMRK/USDT 5.44%     |
+| Worst trade            | PYR/USDT -19.31%    |
+| Best day               | 88.360 USDT         |
+| Worst day              | -85.317 USDT        |
+| Days win/draw/lose     | 66 / 1 / 17         |
+| Avg. Duration Winners  | 1:14:00             |
+| Avg. Duration Loser    | 5:57:00             |
+| Rejected Buy signals   | 22131               |
+|                        |                     |
+| Min balance            | 1001.873 USDT       |
+| Max balance            | 2551.634 USDT       |
+| Drawdown (Account)     | 8.84%               |
+| Drawdown               | 195.021 USDT        |
+| Drawdown high          | 1205.592 USDT       |
+| Drawdown low           | 1010.571 USDT       |
+| Drawdown Start         | 2022-01-21 01:10:00 |
+| Drawdown End           | 2022-01-22 09:20:00 |
+| Market change          | -27.01%             |
+================================================

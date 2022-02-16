@@ -1,0 +1,1198 @@
+
+
+-> travail nettoyer les entrées.
+On observe très vite qu'elle ne sait pas vendre.
+
+- SELECTED
+MOT 5
+USS f
+UCSL y
+
+- Elle veut du choix !!
+
+# config-bt-4--days90
+docker-compose run --rm freqtrade backtesting --config user_data/config-bt-4.json --strategy BB_RPB_TSL_RNG_2
+P	ADP	WR	ADT	MOT	DD	SL	UCSL	RSL	USL	TSL	USS	ROI	IRIBS	PAE	notes					notesi!
+50.47%	0.56%	79.4%	4.81	9	22.89%	-0.125	y	y	59	f	y	y	f	f	ellen'a pas de ROI.
+35.36%	0.39%	73.1%	5.28	9	27.41%	-0.08	f	y	115	f	y	y
+75.96%	0.84%	82.2%	4.42	9	22.08%	-0.33	y	y	1	f	y	y	
+150.88%	1.68%	82.3%	3.93	5	21.14%	-0.99	y	/	/	f	y	y	
+148.01%	1.64%	89.1%	3.83	5	21.14%	-0.99	y	/	/	f	f	y	
+
+
+# config-bt-4--days30
+docker-compose run --rm freqtrade backtesting --config user_data/config-bt-4.json --strategy BB_RPB_TSL_RNG_2
+P	ADP	WR	ADT	MOT	DD	SL	UCSL	RSL	USL	TSL	USS	ROI	IRIBS	PAE	notes					notesi!
+45.78%	1.53%	92%	2.93	5	6.93%	-0.99	y	/	/	y	f	y	f	f	SELECTED
+
+
+# config-bt-4--days147 (--timerange=20210911-20220205) (4.9 mois)
+docker-compose run --rm freqtrade backtesting --timerange=20210911-20220205 --config user_data/config-bt-4.json --strategy BB_RPB_TSL_RNG_2
+P	ADP	WR	ADT	MOT	DD	SL	UCSL	RSL	USL	TSL	USS	ROI	IRIBS	PAE	notes					notesi!
+2717.21%18.48%	93.1%	5.26	5	21.14%	-0.99	y	/	/	y	f	y	f	f	
+
+
+# config-bt-4-BINANCE --days147 (--timerange=20210911-20220205) (4.9 mois)
+docker-compose run --rm freqtrade backtesting --timerange=20210911-20220205 --config user_data/config-bt-4-binance.json --strategy BB_RPB_TSL_RNG_2
+P	ADP	WR	ADT	MOT	DD	SL	UCSL	RSL	USL	TSL	USS	ROI	IRIBS	PAE	notes					notesi!
+58.97%	0.40%	88.8%	1.64	5	16.32%	-0.99	y	/	/	y	f	y	f	f	
+
+
+ # analyse
+les MOT ne change pas le DD -> la nuit du 2021-12-04 03:10:00, elle descend à 977USDT.
+elle ne sait pas vendre en sell signal. USS casse le WR.
+
+- les entrées combinées ne marchent moins bien que les solos.
+
+## analyse des noob entrées :
+local uptrend, ne pas la combinée, la laisser seule.
+ewo/////
+
+local uptrend nfi 32/
+local uptrend ewo2 nfi 32/
+bb local uptrend/
+
+ewo cofi
+
+local uptrend nfi 32local uptrend nfi 32
+ewo2 cofi
+ewo2 cofi
+ewo2 cofi nfi 32
+local uptrend ewo
+local uptrend ewo2
+
+
+# config-bt-4-BINANCE --days147 (--timerange=20210911-20220205) (4.9 mois)
+====================================================================== BUY TAG STATS =======================================================================
+|                           TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|-------------------------------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|                 local uptrend |     66 |           2.97 |         195.79 |           495.591 |          49.56 |        1:57:00 |    65     0     1  98.5 |
+|                          cofi |     51 |           1.10 |          56.21 |           148.662 |          14.87 |        4:11:00 |    45     0     6  88.2 |
+|          local uptrend nfi 32 |     11 |           2.88 |          31.63 |            80.810 |           8.08 |        0:19:00 |    11     0     0   100 |
+|                        nfi 32 |     27 |           0.84 |          22.77 |            59.688 |           5.97 |        6:12:00 |    24     0     3  88.9 |
+|                            bb |      7 |           2.73 |          19.09 |            51.505 |           5.15 |        3:54:00 |     7     0     0   100 |
+|        local uptrend ewo ewo2 |      3 |           6.10 |          18.31 |            45.426 |           4.54 |        0:03:00 |     3     0     0   100 |
+|      local uptrend ewo nfi 32 |      2 |           3.93 |           7.87 |            21.529 |           2.15 |        0:08:00 |     2     0     0   100 |
+|                    ewo nfi 32 |      1 |           6.83 |           6.83 |            19.185 |           1.92 |        0:05:00 |     1     0     0   100 |
+|            local uptrend ewo2 |      2 |           3.19 |           6.38 |            17.895 |           1.79 |        0:45:00 |     2     0     0   100 |
+|                        bb ewo |      8 |           1.34 |          10.76 |            12.559 |           1.26 |        0:11:00 |     7     0     1  87.5 |
+|          bb local uptrend ewo |      6 |           1.02 |           6.09 |            11.650 |           1.17 |        0:22:00 |     5     0     1  83.3 |
+|                   ewo2 nfi 32 |      2 |           2.29 |           4.57 |            11.481 |           1.15 |        0:10:00 |     2     0     0   100 |
+| local uptrend ewo ewo2 nfi 32 |      1 |           3.66 |           3.66 |             8.006 |           0.80 |        0:15:00 |     1     0     0   100 |
+|                     bb nfi 32 |      1 |           2.31 |           2.31 |             5.428 |           0.54 |        0:05:00 |     1     0     0   100 |
+|                   ewo2 nfi 33 |      1 |           2.06 |           2.06 |             5.329 |           0.53 |        0:15:00 |     1     0     0   100 |
+|               ewo ewo2 nfi 32 |      1 |           2.00 |           2.00 |             4.683 |           0.47 |        0:20:00 |     1     0     0   100 |
+|                   bb ewo ewo2 |      5 |           0.05 |           0.27 |            -4.870 |          -0.49 |        0:09:00 |     4     0     1  80.0 |
+|             local uptrend ewo |      2 |          -3.90 |          -7.81 |           -14.257 |          -1.43 |        0:50:00 |     1     0     1  50.0 |
+|              bb local uptrend |      3 |          -1.86 |          -5.59 |           -19.966 |          -2.00 |        1:12:00 |     2     0     1  66.7 |
+|                      ewo ewo2 |      2 |          -7.64 |         -15.28 |           -34.373 |          -3.44 |        0:50:00 |     1     0     1  50.0 |
+|                     ewo2 cofi |      1 |         -17.80 |         -17.80 |           -52.099 |          -5.21 |       22:05:00 |     0     0     1     0 |
+|                           ewo |     17 |          -2.56 |         -43.46 |          -139.370 |         -13.94 |        0:58:00 |    12     0     5  70.6 |
+|                          ewo2 |     21 |          -2.44 |         -51.22 |          -144.774 |         -14.48 |        6:09:00 |    16     0     5  76.2 |
+|                         TOTAL |    241 |           1.06 |         255.44 |           589.718 |          58.97 |        3:00:00 |   214     0    27  88.8 |
+======================================================= SELL REASON STATS ========================================================
+|        Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|--------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+| trailing_stop_loss |     230 |    203     0    27  88.3 |           0.63 |         145.55 |           309.191 |          29.11 |
+|                roi |      11 |     11     0     0   100 |           9.99 |         109.89 |           280.527 |          21.98 |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2021-09-11 00:00:00 |
+| Backtesting to         | 2022-02-05 00:00:00 |
+| Max open trades        | 5                   |
+|                        |                     |
+| Total/Daily Avg Trades | 241 / 1.64          |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 1589.718 USDT       |
+| Absolute profit        | 589.718 USDT        |
+| Total profit %         | 58.97%              |
+| Trades per day         | 1.64                |
+| Avg. daily profit %    | 0.40%               |
+| Avg. stake amount      | 257.313 USDT        |
+| Total trade volume     | 62012.508 USDT      |
+|                        |                     |
+| Best Pair              | LRC/USDT 50.47%     |
+| Worst Pair             | ENJ/USDT -28.63%    |
+| Best trade             | SHIB/USDT 9.99%     |
+| Worst trade            | FIL/USDT -17.80%    |
+| Best day               | 87.839 USDT         |
+| Worst day              | -69.156 USDT        |
+| Days win/draw/lose     | 49 / 82 / 15        |
+| Avg. Duration Winners  | 1:39:00             |
+| Avg. Duration Loser    | 13:42:00            |
+| Rejected Buy signals   | 1824                |
+|                        |                     |
+| Min balance            | 1004.152 USDT       |
+| Max balance            | 1589.718 USDT       |
+| Drawdown (Account)     | 16.32%              |
+| Drawdown               | 249.717 USDT        |
+| Drawdown high          | 530.030 USDT        |
+| Drawdown low           | 280.313 USDT        |
+| Drawdown Start         | 2021-11-30 23:15:00 |
+| Drawdown End           | 2021-12-04 05:25:00 |
+| Market change          | 0.45%               |
+================================================
+# config-bt-4--days147 (--timerange=20210911-20220205) (4.9 mois)
+========================================================================== BUY TAG STATS ==========================================================================
+|                                  TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------------------------------------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|                        local uptrend |    163 |           2.58 |         420.09 |          7565.006 |         756.50 |        1:41:00 |   154     0     9  94.5 |
+|                               nfi 32 |    101 |           3.02 |         305.02 |          7456.915 |         745.69 |        2:43:00 |    98     0     3  97.0 |
+|                                 ewo2 |    141 |           1.65 |         233.11 |          2911.401 |         291.14 |        4:20:00 |   132     0     9  93.6 |
+|                                 cofi |    173 |           1.46 |         252.55 |          2447.953 |         244.80 |        4:56:00 |   156     0    17  90.2 |
+|                                   bb |     29 |           3.25 |          94.34 |          1902.618 |         190.26 |        4:21:00 |    28     0     1  96.6 |
+|                               bb ewo |     18 |           3.30 |          59.35 |          1090.566 |         109.06 |        0:27:00 |    17     0     1  94.4 |
+|                     bb local uptrend |     13 |           4.07 |          52.93 |          1071.582 |         107.16 |        2:37:00 |    12     0     1  92.3 |
+|                             ewo ewo2 |     11 |           4.02 |          44.23 |           570.856 |          57.09 |        1:20:00 |    10     0     1  90.9 |
+|                    local uptrend ewo |      4 |          -0.30 |          -1.19 |           522.036 |          52.20 |        0:31:00 |     3     0     1  75.0 |
+|                 local uptrend nfi 32 |     33 |           2.30 |          76.00 |           499.702 |          49.97 |        1:00:00 |    31     0     2  93.9 |
+|             local uptrend ewo nfi 32 |      5 |           7.61 |          38.06 |           457.134 |          45.71 |        0:08:00 |     5     0     0   100 |
+|                          bb ewo ewo2 |      7 |           5.38 |          37.66 |           345.490 |          34.55 |        0:11:00 |     7     0     0   100 |
+|                          ewo2 nfi 32 |      8 |           3.69 |          29.51 |           303.504 |          30.35 |        0:24:00 |     8     0     0   100 |
+|                   local uptrend ewo2 |      5 |           3.28 |          16.42 |           265.612 |          26.56 |        0:33:00 |     5     0     0   100 |
+|                                  ewo |     29 |           0.60 |          17.31 |           231.652 |          23.17 |        2:22:00 |    25     0     4  86.2 |
+|            bb local uptrend ewo ewo2 |      1 |           6.73 |           6.73 |           200.854 |          20.09 |        0:15:00 |     1     0     0   100 |
+|          bb local uptrend ewo nfi 32 |      1 |           5.15 |           5.15 |           161.688 |          16.17 |        0:10:00 |     1     0     0   100 |
+|                 bb local uptrend ewo |      8 |           1.38 |          11.05 |           158.435 |          15.84 |        3:09:00 |     7     0     1  87.5 |
+|                              bb ewo2 |      5 |           3.05 |          15.25 |            70.904 |           7.09 |        0:34:00 |     5     0     0   100 |
+| local uptrend ewo ewo2 nfi 32 nfi 33 |      1 |           9.99 |           9.99 |            53.381 |           5.34 |        0:00:00 |     1     0     0   100 |
+|          local uptrend ewo ewo2 cofi |      1 |           5.95 |           5.95 |            42.208 |           4.22 |        0:05:00 |     1     0     0   100 |
+|              bb local uptrend nfi 32 |      1 |           9.99 |           9.99 |            40.699 |           4.07 |        0:10:00 |     1     0     0   100 |
+|        local uptrend ewo ewo2 nfi 32 |      1 |           3.78 |           3.78 |            27.161 |           2.72 |        0:15:00 |     1     0     0   100 |
+|                           ewo nfi 32 |      1 |           2.45 |           2.45 |            24.594 |           2.46 |        0:05:00 |     1     0     0   100 |
+|                            bb nfi 32 |      1 |           2.36 |           2.36 |            21.099 |           2.11 |        0:05:00 |     1     0     0   100 |
+|                      ewo ewo2 nfi 32 |      2 |           3.18 |           6.36 |            18.162 |           1.82 |        0:20:00 |     2     0     0   100 |
+|                               nfi 33 |      1 |           2.05 |           2.05 |             9.895 |           0.99 |        2:40:00 |     1     0     0   100 |
+|               local uptrend ewo ewo2 |      4 |          -1.91 |          -7.64 |            -5.216 |          -0.52 |        0:15:00 |     3     0     1  75.0 |
+|                            ewo2 cofi |      2 |          -7.89 |         -15.78 |          -508.366 |         -50.84 |       11:08:00 |     1     0     1  50.0 |
+|            local uptrend ewo2 nfi 32 |      3 |          -4.27 |         -12.81 |          -785.401 |         -78.54 |        0:58:00 |     2     0     1  66.7 |
+|                                TOTAL |    773 |           2.23 |        1720.26 |         27172.124 |        2717.21 |        3:04:00 |   720     0    53  93.1 |
+======================================================= SELL REASON STATS ========================================================
+|        Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|--------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+| trailing_stop_loss |     707 |    655     0    52  92.6 |           1.53 |        1082.33 |         14304.7   |         216.47 |
+|                roi |      65 |     65     0     0   100 |           9.99 |         649.35 |         13513     |         129.87 |
+|         force_sell |       1 |      0     0     1     0 |         -11.41 |         -11.41 |          -645.569 |          -2.28 |
+======================================================== LEFT OPEN TRADES REPORT =========================================================
+|        Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|-------------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+| 1EARTH/USDT |      1 |         -11.41 |         -11.41 |          -645.569 |         -64.56 |       13:40:00 |     0     0     1     0 |
+|       TOTAL |      1 |         -11.41 |         -11.41 |          -645.569 |         -64.56 |       13:40:00 |     0     0     1     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2021-09-11 00:00:00 |
+| Backtesting to         | 2022-02-05 00:00:00 |
+| Max open trades        | 5                   |
+|                        |                     |
+| Total/Daily Avg Trades | 773 / 5.26          |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 28172.124 USDT      |
+| Absolute profit        | 27172.124 USDT      |
+| Total profit %         | 2717.21%            |
+| Trades per day         | 5.26                |
+| Avg. daily profit %    | 18.48%              |
+| Avg. stake amount      | 2042.568 USDT       |
+| Total trade volume     | 1578904.757 USDT    |
+|                        |                     |
+| Best Pair              | BLOK/USDT 222.85%   |
+| Worst Pair             | ADS/USDT -43.41%    |
+| Best trade             | GALAX/USDT 9.99%    |
+| Worst trade            | QRDO/USDT -17.80%   |
+| Best day               | 1981.568 USDT       |
+| Worst day              | -1747.866 USDT      |
+| Days win/draw/lose     | 111 / 17 / 20       |
+| Avg. Duration Winners  | 2:03:00             |
+| Avg. Duration Loser    | 16:52:00            |
+| Rejected Buy signals   | 8335                |
+|                        |                     |
+| Min balance            | 1007.020 USDT       |
+| Max balance            | 30105.750 USDT      |
+| Drawdown (Account)     | 21.14%              |
+| Drawdown               | 3523.471 USDT       |
+| Drawdown high          | 15669.558 USDT      |
+| Drawdown low           | 12146.087 USDT      |
+| Drawdown Start         | 2021-12-04 03:10:00 |
+| Drawdown End           | 2021-12-04 05:25:00 |
+| Market change          | 64.21%              |
+================================================
+# config-bt-4--days90
+===================================================================== BUY TAG STATS ======================================================================
+|                         TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|-----------------------------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|                      nfi 32 |     45 |           3.76 |         169.00 |           494.616 |          49.46 |        4:01:00 |    45     0     0   100 |
+|               local uptrend |     76 |           1.86 |         141.02 |           422.832 |          42.28 |        2:05:00 |    69     0     7  90.8 |
+|                        cofi |     81 |           0.44 |          35.95 |           162.574 |          16.26 |        4:23:00 |    69     0    12  85.2 |
+|                        ewo2 |     52 |           0.57 |          29.73 |           122.884 |          12.29 |        8:42:00 |    46     0     6  88.5 |
+|                          bb |     15 |           3.04 |          45.56 |           119.028 |          11.90 |        8:13:00 |    14     0     1  93.3 |
+|                      bb ewo |     10 |           2.51 |          25.11 |            97.704 |           9.77 |        1:12:00 |     9     0     1  90.0 |
+|            bb local uptrend |      9 |           4.12 |          37.09 |            75.234 |           7.52 |        3:43:00 |     8     0     1  88.9 |
+|           local uptrend ewo |      2 |           7.16 |          14.32 |            42.697 |           4.27 |        0:12:00 |     2     0     0   100 |
+|   bb local uptrend ewo ewo2 |      1 |           6.73 |           6.73 |            15.871 |           1.59 |        0:15:00 |     1     0     0   100 |
+| bb local uptrend ewo nfi 32 |      1 |           5.15 |           5.15 |            12.776 |           1.28 |        0:10:00 |     1     0     0   100 |
+|          local uptrend ewo2 |      1 |           4.41 |           4.41 |            10.452 |           1.05 |        1:15:00 |     1     0     0   100 |
+|                 bb ewo ewo2 |      1 |           2.55 |           2.55 |             8.808 |           0.88 |        0:35:00 |     1     0     0   100 |
+|    local uptrend ewo nfi 32 |      1 |           2.69 |           2.69 |             7.016 |           0.70 |        0:20:00 |     1     0     0   100 |
+|        local uptrend nfi 32 |     17 |           0.72 |          12.29 |             6.153 |           0.62 |        0:51:00 |    15     0     2  88.2 |
+|                 ewo2 nfi 32 |      1 |           2.36 |           2.36 |             5.995 |           0.60 |        1:00:00 |     1     0     0   100 |
+|                         ewo |     19 |          -0.64 |         -12.14 |             4.749 |           0.47 |        2:48:00 |    15     0     4  78.9 |
+|        bb local uptrend ewo |      4 |          -2.29 |          -9.14 |           -20.390 |          -2.04 |        6:12:00 |     3     0     1  75.0 |
+|                   ewo2 cofi |      1 |         -17.80 |         -17.80 |           -44.070 |          -4.41 |       22:05:00 |     0     0     1     0 |
+|   local uptrend ewo2 nfi 32 |      1 |         -17.80 |         -17.80 |           -64.840 |          -6.48 |        2:45:00 |     0     0     1     0 |
+|                       TOTAL |    338 |           1.41 |         477.07 |          1480.088 |         148.01 |        4:15:00 |   301     0    37  89.1 |
+======================================================= SELL REASON STATS ========================================================
+|        Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|--------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+| trailing_stop_loss |     308 |    271     0    37  88.0 |           0.58 |         177.37 |           633.376 |          35.47 |
+|                roi |      30 |     30     0     0   100 |           9.99 |         299.7  |           846.712 |          59.94 |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2021-11-12 00:00:00 |
+| Backtesting to         | 2022-02-10 09:30:00 |
+| Max open trades        | 5                   |
+|                        |                     |
+| Total/Daily Avg Trades | 338 / 3.76          |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 2480.088 USDT       |
+| Absolute profit        | 1480.088 USDT       |
+| Total profit %         | 148.01%             |
+| Trades per day         | 3.76                |
+| Avg. daily profit %    | 1.64%               |
+| Avg. stake amount      | 296.698 USDT        |
+| Total trade volume     | 100283.781 USDT     |
+|                        |                     |
+| Best Pair              | 1EARTH/USDT 123.80% |
+| Worst Pair             | GALAX/USDT -55.10%  |
+| Best trade             | RMRK/USDT 9.99%     |
+| Worst trade            | BASIC/USDT -17.80%  |
+| Best day               | 156.575 USDT        |
+| Worst day              | -138.109 USDT       |
+| Days win/draw/lose     | 59 / 17 / 15        |
+| Avg. Duration Winners  | 2:11:00             |
+| Avg. Duration Loser    | 21:06:00            |
+| Rejected Buy signals   | 6727                |
+|                        |                     |
+| Min balance            | 977.553 USDT        |
+| Max balance            | 2480.088 USDT       |
+| Drawdown (Account)     | 21.14%              |
+| Drawdown               | 278.410 USDT        |
+| Drawdown high          | 317.157 USDT        |
+| Drawdown low           | 38.748 USDT         |
+| Drawdown Start         | 2021-12-04 03:10:00 |
+| Drawdown End           | 2021-12-04 05:25:00 |
+| Market change          | -27.01%             |
+================================================
+USS casse les ROI?
+===================================================================== BUY TAG STATS ======================================================================
+|                         TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|-----------------------------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|               local uptrend |     78 |           1.68 |         130.98 |           398.185 |          39.82 |        0:55:00 |    67     0    11  85.9 |
+|                      nfi 32 |     45 |           2.86 |         128.77 |           389.527 |          38.95 |        1:05:00 |    42     0     3  93.3 |
+|                        ewo2 |     53 |           1.70 |          89.88 |           293.697 |          29.37 |        1:54:00 |    44     0     9  83.0 |
+|            bb local uptrend |      9 |           5.73 |          51.56 |           145.064 |          14.51 |        0:25:00 |     8     0     1  88.9 |
+|                        cofi |     81 |           0.10 |           7.81 |           101.265 |          10.13 |        2:13:00 |    58     0    23  71.6 |
+|                      bb ewo |     10 |           2.28 |          22.79 |            92.123 |           9.21 |        1:11:00 |     9     0     1  90.0 |
+|                          bb |     18 |           2.29 |          41.26 |            82.370 |           8.24 |        3:17:00 |    16     0     2  88.9 |
+|           local uptrend ewo |      2 |           7.16 |          14.32 |            42.526 |           4.25 |        0:12:00 |     2     0     0   100 |
+|                         ewo |     20 |          -0.01 |          -0.17 |            35.320 |           3.53 |        1:03:00 |    16     0     4  80.0 |
+|   bb local uptrend ewo ewo2 |      1 |           6.73 |           6.73 |            16.248 |           1.62 |        0:15:00 |     1     0     0   100 |
+| bb local uptrend ewo nfi 32 |      1 |           5.15 |           5.15 |            13.398 |           1.34 |        0:10:00 |     1     0     0   100 |
+|          local uptrend ewo2 |      1 |           4.59 |           4.59 |            11.392 |           1.14 |        1:15:00 |     1     0     0   100 |
+|                 bb ewo ewo2 |      1 |           2.55 |           2.55 |             9.652 |           0.97 |        0:35:00 |     1     0     0   100 |
+|    local uptrend ewo nfi 32 |      1 |           2.69 |           2.69 |             7.358 |           0.74 |        0:20:00 |     1     0     0   100 |
+|                 ewo2 nfi 32 |      1 |           2.36 |           2.36 |             6.039 |           0.60 |        1:00:00 |     1     0     0   100 |
+|                   ewo2 cofi |      1 |          -4.34 |          -4.34 |           -10.238 |          -1.02 |        9:20:00 |     0     0     1     0 |
+|        local uptrend nfi 32 |     17 |           0.27 |           4.59 |           -19.926 |          -1.99 |        0:50:00 |    14     0     3  82.4 |
+|        bb local uptrend ewo |      4 |          -3.58 |         -14.32 |           -34.186 |          -3.42 |        4:19:00 |     2     0     2  50.0 |
+|   local uptrend ewo2 nfi 32 |      1 |         -17.80 |         -17.80 |           -71.054 |          -7.11 |        2:45:00 |     0     0     1     0 |
+|                       TOTAL |    345 |           1.39 |         479.38 |          1508.761 |         150.88 |        1:35:00 |   284     0    61  82.3 |
+======================================================= SELL REASON STATS ========================================================
+|        Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|--------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+| trailing_stop_loss |     233 |    213     0    20  91.4 |           1.21 |         281.79 |           925.813 |          56.36 |
+|        sell_signal |      89 |     48     0    41  53.9 |          -0.36 |         -32.17 |           -91.99  |          -6.43 |
+|                roi |      23 |     23     0     0   100 |           9.99 |         229.77 |           674.938 |          45.95 |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2021-11-12 00:00:00 |
+| Backtesting to         | 2022-02-10 09:30:00 |
+| Max open trades        | 5                   |
+|                        |                     |
+| Total/Daily Avg Trades | 345 / 3.83          |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 2508.761 USDT       |
+| Absolute profit        | 1508.761 USDT       |
+| Total profit %         | 150.88%             |
+| Trades per day         | 3.83                |
+| Avg. daily profit %    | 1.68%               |
+| Avg. stake amount      | 305.837 USDT        |
+| Total trade volume     | 105513.799 USDT     |
+|                        |                     |
+| Best Pair              | 1EARTH/USDT 98.51%  |
+| Worst Pair             | GALAX/USDT -52.21%  |
+| Best trade             | RMRK/USDT 9.99%     |
+| Worst trade            | BASIC/USDT -17.80%  |
+| Best day               | 123.105 USDT        |
+| Worst day              | -102.530 USDT       |
+| Days win/draw/lose     | 57 / 17 / 17        |
+| Avg. Duration Winners  | 0:48:00             |
+| Avg. Duration Loser    | 5:10:00             |
+| Rejected Buy signals   | 3507                |
+|                        |                     |
+| Min balance            | 990.294 USDT        |
+| Max balance            | 2508.761 USDT       |
+| Drawdown (Account)     | 21.14%              |
+| Drawdown               | 291.959 USDT        |
+| Drawdown high          | 381.261 USDT        |
+| Drawdown low           | 89.302 USDT         |
+| Drawdown Start         | 2021-12-04 03:10:00 |
+| Drawdown End           | 2021-12-04 05:25:00 |
+| Market change          | -27.01%             |
+================================================
+
+===================================================================== BUY TAG STATS ======================================================================
+|                         TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|-----------------------------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|                      nfi 32 |     47 |           3.94 |         184.97 |           417.008 |          41.70 |        3:52:00 |    47     0     0   100 |
+|               local uptrend |     84 |           1.99 |         167.29 |           401.333 |          40.13 |        2:01:00 |    76     0     8  90.5 |
+|                        cofi |     83 |           0.48 |          40.22 |           131.372 |          13.14 |        4:18:00 |    71     0    12  85.5 |
+|                          bb |     15 |           3.04 |          45.56 |            96.710 |           9.67 |        8:13:00 |    14     0     1  93.3 |
+|                        ewo2 |     52 |           0.55 |          28.55 |            91.592 |           9.16 |        8:47:00 |    46     0     6  88.5 |
+|                      bb ewo |     10 |           2.51 |          25.11 |            73.380 |           7.34 |        1:12:00 |     9     0     1  90.0 |
+|            bb local uptrend |      9 |           4.12 |          37.09 |            61.011 |           6.10 |        3:43:00 |     8     0     1  88.9 |
+|   bb local uptrend ewo ewo2 |      1 |           6.73 |           6.73 |            13.122 |           1.31 |        0:15:00 |     1     0     0   100 |
+| bb local uptrend ewo nfi 32 |      1 |           5.15 |           5.15 |            10.475 |           1.05 |        0:10:00 |     1     0     0   100 |
+|          local uptrend ewo2 |      1 |           4.41 |           4.41 |             8.637 |           0.86 |        1:15:00 |     1     0     0   100 |
+|                 bb ewo ewo2 |      1 |           2.55 |           2.55 |             6.745 |           0.67 |        0:35:00 |     1     0     0   100 |
+|    local uptrend ewo nfi 32 |      1 |           2.69 |           2.69 |             5.700 |           0.57 |        0:20:00 |     1     0     0   100 |
+|        bb local uptrend ewo |      6 |           0.57 |           3.43 |             5.488 |           0.55 |        4:09:00 |     5     0     1  83.3 |
+|                 ewo2 nfi 32 |      1 |           2.36 |           2.36 |             4.951 |           0.50 |        1:00:00 |     1     0     0   100 |
+|        local uptrend nfi 32 |     16 |           0.63 |          10.04 |             3.553 |           0.36 |        0:53:00 |    14     0     2  87.5 |
+|           local uptrend ewo |      3 |          -1.16 |          -3.48 |            -0.733 |          -0.07 |        0:10:00 |     2     0     1  66.7 |
+|                         ewo |     21 |          -1.27 |         -26.67 |           -34.716 |          -3.47 |        2:32:00 |    16     0     5  76.2 |
+|                   ewo2 cofi |      1 |         -17.80 |         -17.80 |           -36.077 |          -3.61 |       22:05:00 |     0     0     1     0 |
+|   local uptrend ewo2 nfi 32 |      1 |         -17.80 |         -17.80 |           -49.213 |          -4.92 |        2:45:00 |     0     0     1     0 |
+|                       TOTAL |    354 |           1.41 |         500.38 |          1210.337 |         121.03 |        4:07:00 |   314     0    40  88.7 |
+======================================================= SELL REASON STATS ========================================================
+|        Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|--------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+| trailing_stop_loss |     319 |    279     0    40  87.5 |           0.47 |         150.73 |           443.125 |          25.12 |
+|                roi |      35 |     35     0     0   100 |           9.99 |         349.65 |           767.212 |          58.28 |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2021-11-12 00:00:00 |
+| Backtesting to         | 2022-02-10 09:30:00 |
+| Max open trades        | 6                   |
+|                        |                     |
+| Total/Daily Avg Trades | 354 / 3.93          |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 2210.337 USDT       |
+| Absolute profit        | 1210.337 USDT       |
+| Total profit %         | 121.03%             |
+| Trades per day         | 3.93                |
+| Avg. daily profit %    | 1.34%               |
+| Avg. stake amount      | 232.570 USDT        |
+| Total trade volume     | 82329.873 USDT      |
+|                        |                     |
+| Best Pair              | 1EARTH/USDT 123.25% |
+| Worst Pair             | GALAX/USDT -55.10%  |
+| Best trade             | RMRK/USDT 9.99%     |
+| Worst trade            | BASIC/USDT -17.80%  |
+| Best day               | 158.065 USDT        |
+| Worst day              | -103.591 USDT       |
+| Days win/draw/lose     | 60 / 17 / 14        |
+| Avg. Duration Winners  | 2:07:00             |
+| Avg. Duration Loser    | 19:46:00            |
+| Rejected Buy signals   | 3468                |
+|                        |                     |
+| Min balance            | 981.529 USDT        |
+| Max balance            | 2210.337 USDT       |
+| Drawdown (Account)     | 21.26%              |
+| Drawdown               | 272.953 USDT        |
+| Drawdown high          | 284.010 USDT        |
+| Drawdown low           | 11.057 USDT         |
+| Drawdown Start         | 2021-12-04 03:10:00 |
+| Drawdown End           | 2021-12-04 05:25:00 |
+| Market change          | -27.01%             |
+================================================
+
+===================================================================== BUY TAG STATS ======================================================================
+|                         TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|-----------------------------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|                      nfi 32 |     55 |           4.33 |         238.42 |           280.569 |          28.06 |        3:20:00 |    55     0     0   100 |
+|               local uptrend |    106 |           1.45 |         153.78 |           192.030 |          19.20 |        1:50:00 |    93     0    13  87.7 |
+|                        cofi |     83 |           0.48 |          40.22 |            62.904 |           6.29 |        4:18:00 |    71     0    12  85.5 |
+|                          bb |     22 |           2.12 |          46.63 |            54.147 |           5.41 |        6:00:00 |    20     0     2  90.9 |
+|                        ewo2 |     52 |           0.55 |          28.55 |            44.380 |           4.44 |        8:47:00 |    46     0     6  88.5 |
+|        bb local uptrend ewo |      6 |           3.96 |          23.78 |            25.945 |           2.59 |        4:08:00 |     6     0     0   100 |
+|                      bb ewo |     11 |           0.66 |           7.31 |            24.892 |           2.49 |        1:06:00 |     9     0     2  81.8 |
+|        local uptrend nfi 32 |     18 |           1.07 |          19.18 |            17.455 |           1.75 |        0:49:00 |    16     0     2  88.9 |
+|      local uptrend ewo ewo2 |      1 |           9.99 |           9.99 |            11.463 |           1.15 |        0:25:00 |     1     0     0   100 |
+|            bb local uptrend |     13 |           0.80 |          10.37 |             9.323 |           0.93 |        2:38:00 |    10     0     3  76.9 |
+|   bb local uptrend ewo ewo2 |      1 |           6.73 |           6.73 |             7.754 |           0.78 |        0:15:00 |     1     0     0   100 |
+| bb local uptrend ewo nfi 32 |      1 |           5.15 |           5.15 |             6.086 |           0.61 |        0:10:00 |     1     0     0   100 |
+|          local uptrend ewo2 |      1 |           4.41 |           4.41 |             5.096 |           0.51 |        1:15:00 |     1     0     0   100 |
+|           local uptrend ewo |      4 |           0.60 |           2.41 |             4.095 |           0.41 |        0:09:00 |     3     0     1  75.0 |
+|                 bb ewo ewo2 |      1 |           2.55 |           2.55 |             3.503 |           0.35 |        0:35:00 |     1     0     0   100 |
+|    local uptrend ewo nfi 32 |      1 |           2.69 |           2.69 |             3.258 |           0.33 |        0:20:00 |     1     0     0   100 |
+|                 ewo2 nfi 32 |      1 |           2.36 |           2.36 |             2.698 |           0.27 |        1:00:00 |     1     0     0   100 |
+|                   ewo2 cofi |      1 |         -17.80 |         -17.80 |           -20.488 |          -2.05 |       22:05:00 |     0     0     1     0 |
+|                         ewo |     23 |          -0.94 |         -21.52 |           -20.976 |          -2.10 |        2:21:00 |    18     0     5  78.3 |
+|   local uptrend ewo2 nfi 32 |      1 |         -17.80 |         -17.80 |           -25.114 |          -2.51 |        2:45:00 |     0     0     1     0 |
+|                       TOTAL |    402 |           1.36 |         547.39 |           689.019 |          68.90 |        3:43:00 |   354     0    48  88.1 |
+======================================================= SELL REASON STATS ========================================================
+|        Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|--------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+| trailing_stop_loss |     359 |    311     0    48  86.6 |           0.33 |         117.82 |           192.021 |          11.78 |
+|                roi |      43 |     43     0     0   100 |           9.99 |         429.57 |           496.998 |          42.96 |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2021-11-12 00:00:00 |
+| Backtesting to         | 2022-02-10 09:30:00 |
+| Max open trades        | 10                  |
+|                        |                     |
+| Total/Daily Avg Trades | 402 / 4.47          |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 1689.019 USDT       |
+| Absolute profit        | 689.019 USDT        |
+| Total profit %         | 68.90%              |
+| Trades per day         | 4.47                |
+| Avg. daily profit %    | 0.77%               |
+| Avg. stake amount      | 123.626 USDT        |
+| Total trade volume     | 49697.758 USDT      |
+|                        |                     |
+| Best Pair              | 1EARTH/USDT 125.65% |
+| Worst Pair             | GALAX/USDT -45.11%  |
+| Best trade             | GALAX/USDT 9.99%    |
+| Worst trade            | BASIC/USDT -17.80%  |
+| Best day               | 77.206 USDT         |
+| Worst day              | -81.471 USDT        |
+| Days win/draw/lose     | 60 / 17 / 14        |
+| Avg. Duration Winners  | 1:58:00             |
+| Avg. Duration Loser    | 16:33:00            |
+| Rejected Buy signals   | 1355                |
+|                        |                     |
+| Min balance            | 971.269 USDT        |
+| Max balance            | 1689.019 USDT       |
+| Drawdown (Account)     | 20.76%              |
+| Drawdown               | 254.004 USDT        |
+| Drawdown high          | 223.230 USDT        |
+| Drawdown low           | -30.774 USDT        |
+| Drawdown Start         | 2021-12-04 03:10:00 |
+| Drawdown End           | 2021-12-04 05:25:00 |
+| Market change          | -27.01%             |
+================================================
+
+===================================================================== BUY TAG STATS ======================================================================
+|                         TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|-----------------------------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|                      nfi 32 |     45 |           3.76 |         169.00 |           494.616 |          49.46 |        4:01:00 |    45     0     0   100 |
+|               local uptrend |     76 |           1.86 |         141.02 |           422.832 |          42.28 |        2:05:00 |    69     0     7  90.8 |
+|                        cofi |     81 |           0.44 |          35.95 |           162.574 |          16.26 |        4:23:00 |    69     0    12  85.2 |
+|                        ewo2 |     52 |           0.57 |          29.73 |           122.884 |          12.29 |        8:42:00 |    46     0     6  88.5 |
+|                          bb |     15 |           3.04 |          45.56 |           119.028 |          11.90 |        8:13:00 |    14     0     1  93.3 |
+|                      bb ewo |     10 |           2.51 |          25.11 |            97.704 |           9.77 |        1:12:00 |     9     0     1  90.0 |
+|            bb local uptrend |      9 |           4.12 |          37.09 |            75.234 |           7.52 |        3:43:00 |     8     0     1  88.9 |
+|           local uptrend ewo |      2 |           7.16 |          14.32 |            42.697 |           4.27 |        0:12:00 |     2     0     0   100 |
+|   bb local uptrend ewo ewo2 |      1 |           6.73 |           6.73 |            15.871 |           1.59 |        0:15:00 |     1     0     0   100 |
+| bb local uptrend ewo nfi 32 |      1 |           5.15 |           5.15 |            12.776 |           1.28 |        0:10:00 |     1     0     0   100 |
+|          local uptrend ewo2 |      1 |           4.41 |           4.41 |            10.452 |           1.05 |        1:15:00 |     1     0     0   100 |
+|                 bb ewo ewo2 |      1 |           2.55 |           2.55 |             8.808 |           0.88 |        0:35:00 |     1     0     0   100 |
+|    local uptrend ewo nfi 32 |      1 |           2.69 |           2.69 |             7.016 |           0.70 |        0:20:00 |     1     0     0   100 |
+|        local uptrend nfi 32 |     17 |           0.72 |          12.29 |             6.153 |           0.62 |        0:51:00 |    15     0     2  88.2 |
+|                 ewo2 nfi 32 |      1 |           2.36 |           2.36 |             5.995 |           0.60 |        1:00:00 |     1     0     0   100 |
+|                         ewo |     19 |          -0.64 |         -12.14 |             4.749 |           0.47 |        2:48:00 |    15     0     4  78.9 |
+|        bb local uptrend ewo |      4 |          -2.29 |          -9.14 |           -20.390 |          -2.04 |        6:12:00 |     3     0     1  75.0 |
+|                   ewo2 cofi |      1 |         -17.80 |         -17.80 |           -44.070 |          -4.41 |       22:05:00 |     0     0     1     0 |
+|   local uptrend ewo2 nfi 32 |      1 |         -17.80 |         -17.80 |           -64.840 |          -6.48 |        2:45:00 |     0     0     1     0 |
+|                       TOTAL |    338 |           1.41 |         477.07 |          1480.088 |         148.01 |        4:15:00 |   301     0    37  89.1 |
+======================================================= SELL REASON STATS ========================================================
+|        Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|--------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+| trailing_stop_loss |     308 |    271     0    37  88.0 |           0.58 |         177.37 |           633.376 |          35.47 |
+|                roi |      30 |     30     0     0   100 |           9.99 |         299.7  |           846.712 |          59.94 |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2021-11-12 00:00:00 |
+| Backtesting to         | 2022-02-10 09:30:00 |
+| Max open trades        | 5                   |
+|                        |                     |
+| Total/Daily Avg Trades | 338 / 3.76          |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 2480.088 USDT       |
+| Absolute profit        | 1480.088 USDT       |
+| Total profit %         | 148.01%             |
+| Trades per day         | 3.76                |
+| Avg. daily profit %    | 1.64%               |
+| Avg. stake amount      | 296.698 USDT        |
+| Total trade volume     | 100283.781 USDT     |
+|                        |                     |
+| Best Pair              | 1EARTH/USDT 123.80% |
+| Worst Pair             | GALAX/USDT -55.10%  |
+| Best trade             | RMRK/USDT 9.99%     |
+| Worst trade            | BASIC/USDT -17.80%  |
+| Best day               | 156.575 USDT        |
+| Worst day              | -138.109 USDT       |
+| Days win/draw/lose     | 59 / 17 / 15        |
+| Avg. Duration Winners  | 2:11:00             |
+| Avg. Duration Loser    | 21:06:00            |
+| Rejected Buy signals   | 6727                |
+|                        |                     |
+| Min balance            | 977.553 USDT        |
+| Max balance            | 2480.088 USDT       |
+| Drawdown (Account)     | 21.14%              |
+| Drawdown               | 278.410 USDT        |
+| Drawdown high          | 317.157 USDT        |
+| Drawdown low           | 38.748 USDT         |
+| Drawdown Start         | 2021-12-04 03:10:00 |
+| Drawdown End           | 2021-12-04 05:25:00 |
+| Market change          | -27.01%             |
+================================================
+
+# config-bt-4--days30
+==================================================================== BUY TAG STATS =====================================================================
+|                       TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|---------------------------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|             local uptrend |     22 |           2.42 |          53.19 |           131.542 |          13.15 |        2:32:00 |    21     0     1  95.5 |
+|                      cofi |     22 |           2.34 |          51.46 |           120.979 |          12.10 |        4:25:00 |    20     0     2  90.9 |
+|                    nfi 32 |      9 |           4.73 |          42.60 |           100.081 |          10.01 |        4:55:00 |     9     0     0   100 |
+|                      ewo2 |      8 |           2.96 |          23.67 |            59.570 |           5.96 |        1:04:00 |     8     0     0   100 |
+|                       ewo |      5 |           4.08 |          20.38 |            51.804 |           5.18 |        0:27:00 |     5     0     0   100 |
+|                    bb ewo |      4 |           4.48 |          17.93 |            37.862 |           3.79 |        1:19:00 |     4     0     0   100 |
+|                        bb |      4 |           3.47 |          13.88 |            32.199 |           3.22 |        0:14:00 |     4     0     0   100 |
+|               bb ewo ewo2 |      1 |           2.55 |           2.55 |             5.473 |           0.55 |        0:35:00 |     1     0     0   100 |
+|      bb local uptrend ewo |      1 |           1.95 |           1.95 |             4.297 |           0.43 |       11:30:00 |     1     0     0   100 |
+|          bb local uptrend |      4 |           0.27 |           1.09 |            -3.351 |          -0.34 |        8:19:00 |     3     0     1  75.0 |
+| local uptrend ewo2 nfi 32 |      1 |         -17.80 |         -17.80 |           -40.287 |          -4.03 |        2:45:00 |     0     0     1     0 |
+|      local uptrend nfi 32 |      7 |          -2.44 |         -17.11 |           -42.335 |          -4.23 |        1:07:00 |     5     0     2  71.4 |
+|                     TOTAL |     88 |           2.20 |         193.80 |           457.834 |          45.78 |        3:04:00 |    81     0     7  92.0 |
+======================================================= SELL REASON STATS ========================================================
+|        Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|--------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+| trailing_stop_loss |      79 |     72     0     7  91.1 |           1.32 |         103.89 |           251.935 |          20.78 |
+|                roi |       9 |      9     0     0   100 |           9.99 |          89.91 |           205.899 |          17.98 |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2022-01-08 00:00:00 |
+| Backtesting to         | 2022-02-07 16:45:00 |
+| Max open trades        | 5                   |
+|                        |                     |
+| Total/Daily Avg Trades | 88 / 2.93           |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 1457.834 USDT       |
+| Absolute profit        | 457.834 USDT        |
+| Total profit %         | 45.78%              |
+| Trades per day         | 2.93                |
+| Avg. daily profit %    | 1.53%               |
+| Avg. stake amount      | 245.384 USDT        |
+| Total trade volume     | 21593.815 USDT      |
+|                        |                     |
+| Best Pair              | 1EARTH/USDT 45.81%  |
+| Worst Pair             | ADS/USDT -35.60%    |
+| Best trade             | 1EARTH/USDT 9.99%   |
+| Worst trade            | 1EARTH/USDT -17.80% |
+| Best day               | 97.284 USDT         |
+| Worst day              | -85.810 USDT        |
+| Days win/draw/lose     | 20 / 8 / 3          |
+| Avg. Duration Winners  | 2:42:00             |
+| Avg. Duration Loser    | 7:16:00             |
+| Rejected Buy signals   | 1119                |
+|                        |                     |
+| Min balance            | 1005.899 USDT       |
+| Max balance            | 1478.025 USDT       |
+| Drawdown (Account)     | 6.93%               |
+| Drawdown               | 102.448 USDT        |
+| Drawdown high          | 478.025 USDT        |
+| Drawdown low           | 375.577 USDT        |
+| Drawdown Start         | 2022-01-31 03:25:00 |
+| Drawdown End           | 2022-01-31 18:10:00 |
+| Market change          | -9.13%              |
+================================================
+
+==================================================================== BUY TAG STATS =====================================================================
+|                       TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|---------------------------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|                      cofi |     22 |           2.18 |          47.99 |           194.809 |          19.48 |        4:25:00 |    20     0     2  90.9 |
+|                    nfi 32 |      9 |           5.18 |          46.60 |           185.559 |          18.56 |        4:55:00 |     9     0     0   100 |
+|             local uptrend |     19 |           1.60 |          30.41 |           128.170 |          12.82 |        2:52:00 |    18     0     1  94.7 |
+|                      ewo2 |      8 |           2.96 |          23.67 |           104.088 |          10.41 |        1:04:00 |     8     0     0   100 |
+|                       ewo |      4 |           4.25 |          16.99 |            76.687 |           7.67 |        0:30:00 |     4     0     0   100 |
+|                        bb |      4 |           3.47 |          13.88 |            57.018 |           5.70 |        0:14:00 |     4     0     0   100 |
+|                    bb ewo |      2 |           6.49 |          12.98 |            44.458 |           4.45 |        0:10:00 |     2     0     0   100 |
+|               bb ewo ewo2 |      1 |           2.55 |           2.55 |             9.545 |           0.95 |        0:35:00 |     1     0     0   100 |
+|      bb local uptrend ewo |      1 |           1.95 |           1.95 |             7.612 |           0.76 |       11:30:00 |     1     0     0   100 |
+|          bb local uptrend |      3 |          -2.97 |          -8.90 |           -47.605 |          -4.76 |       10:50:00 |     2     0     1  66.7 |
+| local uptrend ewo2 nfi 32 |      1 |         -17.80 |         -17.80 |           -72.412 |          -7.24 |        2:45:00 |     0     0     1     0 |
+|      local uptrend nfi 32 |      5 |          -5.25 |         -26.24 |          -115.538 |         -11.55 |        1:22:00 |     3     0     2  60.0 |
+|                     TOTAL |     79 |           1.82 |         144.08 |           572.391 |          57.24 |        3:19:00 |    72     0     7  91.1 |
+======================================================= SELL REASON STATS ========================================================
+|        Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|--------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+| trailing_stop_loss |      75 |     68     0     7  90.7 |           1.28 |          96.12 |           384.468 |          32.04 |
+|                roi |       4 |      4     0     0   100 |          11.99 |          47.95 |           187.922 |          15.98 |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2022-01-08 00:00:00 |
+| Backtesting to         | 2022-02-07 16:45:00 |
+| Max open trades        | 3                   |
+|                        |                     |
+| Total/Daily Avg Trades | 79 / 2.63           |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 1572.391 USDT       |
+| Absolute profit        | 572.391 USDT        |
+| Total profit %         | 57.24%              |
+| Trades per day         | 2.63                |
+| Avg. daily profit %    | 1.91%               |
+| Avg. stake amount      | 425.261 USDT        |
+| Total trade volume     | 33595.606 USDT      |
+|                        |                     |
+| Best Pair              | 1EARTH/USDT 44.34%  |
+| Worst Pair             | ADS/USDT -35.60%    |
+| Best trade             | 1EARTH/USDT 11.99%  |
+| Worst trade            | 1EARTH/USDT -17.80% |
+| Best day               | 107.745 USDT        |
+| Worst day              | -153.960 USDT       |
+| Days win/draw/lose     | 20 / 8 / 3          |
+| Avg. Duration Winners  | 2:56:00             |
+| Avg. Duration Loser    | 7:16:00             |
+| Rejected Buy signals   | 6291                |
+|                        |                     |
+| Min balance            | 1009.832 USDT       |
+| Max balance            | 1611.823 USDT       |
+| Drawdown (Account)     | 11.41%              |
+| Drawdown               | 183.974 USDT        |
+| Drawdown high          | 611.823 USDT        |
+| Drawdown low           | 427.849 USDT        |
+| Drawdown Start         | 2022-01-31 03:25:00 |
+| Drawdown End           | 2022-01-31 18:10:00 |
+| Market change          | -9.13%              |
+================================================
+
+==================================================================== BUY TAG STATS =====================================================================
+|                       TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|---------------------------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|                    nfi 32 |      9 |           4.70 |          42.28 |           166.972 |          16.70 |        4:56:00 |     9     0     0   100 |
+|                      cofi |     22 |           1.87 |          41.14 |           163.333 |          16.33 |        4:25:00 |    20     0     2  90.9 |
+|             local uptrend |     19 |           1.60 |          30.41 |           124.409 |          12.44 |        2:52:00 |    18     0     1  94.7 |
+|                      ewo2 |      8 |           2.96 |          23.67 |           101.331 |          10.13 |        1:04:00 |     8     0     0   100 |
+|                       ewo |      4 |           4.25 |          16.99 |            74.549 |           7.45 |        0:30:00 |     4     0     0   100 |
+|                        bb |      4 |           3.47 |          13.88 |            55.667 |           5.57 |        0:14:00 |     4     0     0   100 |
+|                    bb ewo |      2 |           6.49 |          12.98 |            44.458 |           4.45 |        0:10:00 |     2     0     0   100 |
+|               bb ewo ewo2 |      1 |           2.55 |           2.55 |             9.318 |           0.93 |        0:35:00 |     1     0     0   100 |
+|      bb local uptrend ewo |      1 |           1.95 |           1.95 |             7.431 |           0.74 |       11:30:00 |     1     0     0   100 |
+|          bb local uptrend |      3 |          -2.97 |          -8.90 |           -45.748 |          -4.57 |       10:50:00 |     2     0     1  66.7 |
+| local uptrend ewo2 nfi 32 |      1 |         -17.80 |         -17.80 |           -71.607 |          -7.16 |        2:45:00 |     0     0     1     0 |
+|      local uptrend nfi 32 |      5 |          -5.25 |         -26.24 |          -112.801 |         -11.28 |        1:22:00 |     3     0     2  60.0 |
+|                     TOTAL |     79 |           1.68 |         132.92 |           517.312 |          51.73 |        3:19:00 |    72     0     7  91.1 |
+======================================================= SELL REASON STATS ========================================================
+|        Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|--------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+| trailing_stop_loss |      79 |     72     0     7  91.1 |           1.68 |         132.92 |           517.312 |          44.31 |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2022-01-08 00:00:00 |
+| Backtesting to         | 2022-02-07 16:45:00 |
+| Max open trades        | 3                   |
+|                        |                     |
+| Total/Daily Avg Trades | 79 / 2.63           |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 1517.312 USDT       |
+| Absolute profit        | 517.312 USDT        |
+| Total profit %         | 51.73%              |
+| Trades per day         | 2.63                |
+| Avg. daily profit %    | 1.72%               |
+| Avg. stake amount      | 415.127 USDT        |
+| Total trade volume     | 32795.062 USDT      |
+|                        |                     |
+| Best Pair              | 1EARTH/USDT 36.83%  |
+| Worst Pair             | ADS/USDT -35.60%    |
+| Best trade             | 1EARTH/USDT 11.67%  |
+| Worst trade            | 1EARTH/USDT -17.80% |
+| Best day               | 97.091 USDT         |
+| Worst day              | -148.567 USDT       |
+| Days win/draw/lose     | 19 / 8 / 4          |
+| Avg. Duration Winners  | 2:56:00             |
+| Avg. Duration Loser    | 7:16:00             |
+| Rejected Buy signals   | 6291                |
+|                        |                     |
+| Min balance            | 1009.832 USDT       |
+| Max balance            | 1555.363 USDT       |
+| Drawdown (Account)     | 11.41%              |
+| Drawdown               | 177.529 USDT        |
+| Drawdown high          | 555.363 USDT        |
+| Drawdown low           | 377.834 USDT        |
+| Drawdown Start         | 2022-01-31 03:25:00 |
+| Drawdown End           | 2022-01-31 18:10:00 |
+| Market change          | -9.13%              |
+================================================
+le roi à 0.11  est efficace.
+
+==================================================================== BUY TAG STATS =====================================================================
+|                       TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|---------------------------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|                      cofi |     22 |           2.09 |          45.99 |           185.676 |          18.57 |        4:25:00 |    20     0     2  90.9 |
+|                    nfi 32 |      9 |           4.96 |          44.60 |           177.508 |          17.75 |        4:55:00 |     9     0     0   100 |
+|             local uptrend |     19 |           1.60 |          30.41 |           127.161 |          12.72 |        2:52:00 |    18     0     1  94.7 |
+|                      ewo2 |      8 |           2.96 |          23.67 |           103.329 |          10.33 |        1:04:00 |     8     0     0   100 |
+|                       ewo |      4 |           4.25 |          16.99 |            76.101 |           7.61 |        0:30:00 |     4     0     0   100 |
+|                        bb |      4 |           3.47 |          13.88 |            56.649 |           5.66 |        0:14:00 |     4     0     0   100 |
+|                    bb ewo |      2 |           6.98 |          13.97 |            47.862 |           4.79 |        0:08:00 |     2     0     0   100 |
+|               bb ewo ewo2 |      1 |           2.55 |           2.55 |             9.483 |           0.95 |        0:35:00 |     1     0     0   100 |
+|      bb local uptrend ewo |      1 |           1.95 |           1.95 |             7.562 |           0.76 |       11:30:00 |     1     0     0   100 |
+|          bb local uptrend |      3 |          -2.97 |          -8.90 |           -47.098 |          -4.71 |       10:50:00 |     2     0     1  66.7 |
+| local uptrend ewo2 nfi 32 |      1 |         -17.80 |         -17.80 |           -72.173 |          -7.22 |        2:45:00 |     0     0     1     0 |
+|      local uptrend nfi 32 |      5 |          -5.25 |         -26.24 |          -114.791 |         -11.48 |        1:22:00 |     3     0     2  60.0 |
+|                     TOTAL |     79 |           1.79 |         141.06 |           557.268 |          55.73 |        3:19:00 |    72     0     7  91.1 |
+======================================================= SELL REASON STATS ========================================================
+|        Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|--------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+| trailing_stop_loss |      74 |     67     0     7  90.5 |           1.16 |          86.12 |           347.307 |          28.71 |
+|                roi |       5 |      5     0     0   100 |          10.99 |          54.95 |           209.961 |          18.32 |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2022-01-08 00:00:00 |
+| Backtesting to         | 2022-02-07 16:45:00 |
+| Max open trades        | 3                   |
+|                        |                     |
+| Total/Daily Avg Trades | 79 / 2.63           |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 1557.268 USDT       |
+| Absolute profit        | 557.268 USDT        |
+| Total profit %         | 55.73%              |
+| Trades per day         | 2.63                |
+| Avg. daily profit %    | 1.86%               |
+| Avg. stake amount      | 422.512 USDT        |
+| Total trade volume     | 33378.415 USDT      |
+|                        |                     |
+| Best Pair              | 1EARTH/USDT 41.34%  |
+| Worst Pair             | ADS/USDT -35.60%    |
+| Best trade             | 2CRZ/USDT 10.99%    |
+| Worst trade            | 1EARTH/USDT -17.80% |
+| Best day               | 102.586 USDT        |
+| Worst day              | -152.480 USDT       |
+| Days win/draw/lose     | 19 / 8 / 4          |
+| Avg. Duration Winners  | 2:56:00             |
+| Avg. Duration Loser    | 7:16:00             |
+| Rejected Buy signals   | 6231                |
+|                        |                     |
+| Min balance            | 1009.832 USDT       |
+| Max balance            | 1596.321 USDT       |
+| Drawdown (Account)     | 11.41%              |
+| Drawdown               | 182.204 USDT        |
+| Drawdown high          | 596.321 USDT        |
+| Drawdown low           | 414.117 USDT        |
+| Drawdown Start         | 2022-01-31 03:25:00 |
+| Drawdown End           | 2022-01-31 18:10:00 |
+| Market change          | -9.13%              |
+================================================
+s
+==================================================================== BUY TAG STATS =====================================================================
+|                       TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|---------------------------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|                    nfi 32 |      9 |           4.29 |          38.64 |           143.327 |          14.33 |        1:23:00 |     8     0     1  88.9 |
+|                      cofi |     21 |           1.61 |          33.74 |           135.963 |          13.60 |        1:52:00 |    16     0     5  76.2 |
+|                      ewo2 |      8 |           2.27 |          18.13 |            70.209 |           7.02 |        1:03:00 |     7     0     1  87.5 |
+|                       ewo |      4 |           4.25 |          16.99 |            68.569 |           6.86 |        0:30:00 |     4     0     0   100 |
+|                    bb ewo |      2 |           6.49 |          12.98 |            44.335 |           4.43 |        0:10:00 |     2     0     0   100 |
+|             local uptrend |     19 |           0.37 |           7.06 |            24.371 |           2.44 |        1:34:00 |    15     0     4  78.9 |
+|          bb local uptrend |      3 |           1.85 |           5.56 |            17.749 |           1.77 |        0:55:00 |     2     0     1  66.7 |
+|               bb ewo ewo2 |      1 |           2.55 |           2.55 |             9.096 |           0.91 |        0:35:00 |     1     0     0   100 |
+|      bb local uptrend ewo |      1 |           1.95 |           1.95 |             7.254 |           0.73 |       11:30:00 |     1     0     0   100 |
+|                        bb |      5 |          -0.78 |          -3.92 |           -24.650 |          -2.46 |        1:38:00 |     4     0     1  80.0 |
+| local uptrend ewo2 nfi 32 |      1 |         -17.80 |         -17.80 |           -69.901 |          -6.99 |        2:45:00 |     0     0     1     0 |
+|      local uptrend nfi 32 |      5 |          -5.25 |         -26.24 |          -107.602 |         -10.76 |        1:22:00 |     3     0     2  60.0 |
+|                     TOTAL |     79 |           1.13 |          89.64 |           318.719 |          31.87 |        1:35:00 |    63     0    16  79.7 |
+======================================================= SELL REASON STATS ========================================================
+|        Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|--------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+| trailing_stop_loss |      57 |     52     0     5  91.2 |           1.45 |          82.64 |           295.831 |          27.55 |
+|        sell_signal |      22 |     11     0    11  50.0 |           0.32 |           7    |            22.888 |           2.33 |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2022-01-08 00:00:00 |
+| Backtesting to         | 2022-02-07 16:45:00 |
+| Max open trades        | 3                   |
+|                        |                     |
+| Total/Daily Avg Trades | 79 / 2.63           |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 1318.719 USDT       |
+| Absolute profit        | 318.719 USDT        |
+| Total profit %         | 31.87%              |
+| Trades per day         | 2.63                |
+| Avg. daily profit %    | 1.06%               |
+| Avg. stake amount      | 387.728 USDT        |
+| Total trade volume     | 30630.531 USDT      |
+|                        |                     |
+| Best Pair              | BASIC/USDT 26.83%   |
+| Worst Pair             | ADS/USDT -18.32%    |
+| Best trade             | 1EARTH/USDT 11.97%  |
+| Worst trade            | 1EARTH/USDT -17.80% |
+| Best day               | 94.778 USDT         |
+| Worst day              | -88.659 USDT        |
+| Days win/draw/lose     | 18 / 8 / 5          |
+| Avg. Duration Winners  | 0:47:00             |
+| Avg. Duration Loser    | 4:44:00             |
+| Rejected Buy signals   | 5500                |
+|                        |                     |
+| Min balance            | 1009.832 USDT       |
+| Max balance            | 1329.530 USDT       |
+| Drawdown (Account)     | 11.41%              |
+| Drawdown               | 135.692 USDT        |
+| Drawdown high          | 188.820 USDT        |
+| Drawdown low           | 53.128 USDT         |
+| Drawdown Start         | 2022-01-11 09:10:00 |
+| Drawdown End           | 2022-01-11 14:25:00 |
+| Market change          | -9.13%              |
+================================================
+
+==================================================================== BUY TAG STATS =====================================================================
+|                       TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|---------------------------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|                    nfi 32 |      9 |           4.29 |          38.65 |           144.079 |          14.41 |        1:23:00 |     8     0     1  88.9 |
+|                      cofi |     21 |           1.66 |          34.93 |           143.366 |          14.34 |        1:52:00 |    16     0     5  76.2 |
+|                      ewo2 |      8 |           2.27 |          18.13 |            71.284 |           7.13 |        1:03:00 |     7     0     1  87.5 |
+|                       ewo |      4 |           4.25 |          16.99 |            70.087 |           7.01 |        0:30:00 |     4     0     0   100 |
+|             local uptrend |     19 |           0.80 |          15.11 |            55.767 |           5.58 |        1:33:00 |    15     0     4  78.9 |
+|                    bb ewo |      2 |           6.48 |          12.97 |            44.282 |           4.43 |        0:08:00 |     2     0     0   100 |
+|          bb local uptrend |      3 |           1.85 |           5.56 |            17.355 |           1.74 |        0:55:00 |     2     0     1  66.7 |
+|               bb ewo ewo2 |      1 |           2.55 |           2.55 |             9.132 |           0.91 |        0:35:00 |     1     0     0   100 |
+|      bb local uptrend ewo |      1 |           1.95 |           1.95 |             7.282 |           0.73 |       11:30:00 |     1     0     0   100 |
+|                        bb |      5 |          -0.78 |          -3.92 |           -26.570 |          -2.66 |        1:38:00 |     4     0     1  80.0 |
+| local uptrend ewo2 nfi 32 |      1 |         -17.80 |         -17.80 |           -69.722 |          -6.97 |        2:45:00 |     0     0     1     0 |
+|      local uptrend nfi 32 |      5 |          -5.25 |         -26.24 |          -107.537 |         -10.75 |        1:22:00 |     3     0     2  60.0 |
+|                     TOTAL |     79 |           1.25 |          98.88 |           358.803 |          35.88 |        1:34:00 |    63     0    16  79.7 |
+======================================================= SELL REASON STATS ========================================================
+|        Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|--------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+| trailing_stop_loss |      53 |     48     0     5  90.6 |           1.02 |          53.91 |           198.84  |          17.97 |
+|        sell_signal |      21 |     10     0    11  47.6 |          -0.24 |          -4.98 |           -20.153 |          -1.66 |
+|                roi |       5 |      5     0     0   100 |           9.99 |          49.95 |           180.116 |          16.65 |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2022-01-08 00:00:00 |
+| Backtesting to         | 2022-02-07 16:45:00 |
+| Max open trades        | 3                   |
+|                        |                     |
+| Total/Daily Avg Trades | 79 / 2.63           |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 1358.803 USDT       |
+| Absolute profit        | 358.803 USDT        |
+| Total profit %         | 35.88%              |
+| Trades per day         | 2.63                |
+| Avg. daily profit %    | 1.20%               |
+| Avg. stake amount      | 393.906 USDT        |
+| Total trade volume     | 31118.611 USDT      |
+|                        |                     |
+| Best Pair              | BASIC/USDT 26.83%   |
+| Worst Pair             | ADS/USDT -18.32%    |
+| Best trade             | 2CRZ/USDT 9.99%     |
+| Worst trade            | 1EARTH/USDT -17.80% |
+| Best day               | 95.144 USDT         |
+| Worst day              | -58.840 USDT        |
+| Days win/draw/lose     | 18 / 8 / 5          |
+| Avg. Duration Winners  | 0:46:00             |
+| Avg. Duration Loser    | 4:44:00             |
+| Rejected Buy signals   | 5440                |
+|                        |                     |
+| Min balance            | 1009.832 USDT       |
+| Max balance            | 1369.943 USDT       |
+| Drawdown (Account)     | 11.41%              |
+| Drawdown               | 135.345 USDT        |
+| Drawdown high          | 185.780 USDT        |
+| Drawdown low           | 50.435 USDT         |
+| Drawdown Start         | 2022-01-11 09:10:00 |
+| Drawdown End           | 2022-01-11 14:25:00 |
+| Market change          | -9.13%              |
+================================================
+
+
+# config-bt-4--days90
+
+===================================================================== BUY TAG STATS ======================================================================
+|                         TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|-----------------------------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|                      nfi 32 |     54 |           3.35 |         181.08 |           240.083 |          24.01 |        1:01:00 |    50     0     4  92.6 |
+|               local uptrend |    102 |           1.14 |         116.26 |           170.263 |          17.03 |        0:49:00 |    85     0    17  83.3 |
+|                        ewo2 |     53 |           1.70 |          89.88 |           133.193 |          13.32 |        1:54:00 |    44     0     9  83.0 |
+|                          bb |     21 |           2.41 |          50.61 |            59.938 |           5.99 |        2:54:00 |    19     0     2  90.5 |
+|                      bb ewo |     10 |           2.28 |          22.79 |            38.014 |           3.80 |        1:11:00 |     9     0     1  90.0 |
+|            bb local uptrend |     13 |           1.91 |          24.84 |            36.783 |           3.68 |        0:20:00 |    10     0     3  76.9 |
+|                        cofi |     82 |           0.12 |           9.72 |            34.480 |           3.45 |        2:13:00 |    59     0    23  72.0 |
+|        bb local uptrend ewo |      6 |           3.10 |          18.61 |            21.772 |           2.18 |        2:52:00 |     5     0     1  83.3 |
+|        local uptrend nfi 32 |     20 |           0.87 |          17.37 |            17.145 |           1.71 |        0:47:00 |    17     0     3  85.0 |
+|      local uptrend ewo ewo2 |      1 |           9.99 |           9.99 |            12.570 |           1.26 |        0:25:00 |     1     0     0   100 |
+|   bb local uptrend ewo ewo2 |      1 |           6.73 |           6.73 |             8.567 |           0.86 |        0:15:00 |     1     0     0   100 |
+| bb local uptrend ewo nfi 32 |      1 |           5.15 |           5.15 |             6.831 |           0.68 |        0:10:00 |     1     0     0   100 |
+|          local uptrend ewo2 |      1 |           4.59 |           4.59 |             5.931 |           0.59 |        1:15:00 |     1     0     0   100 |
+|           local uptrend ewo |      4 |           0.60 |           2.41 |             4.633 |           0.46 |        0:09:00 |     3     0     1  75.0 |
+|                 bb ewo ewo2 |      1 |           2.55 |           2.55 |             4.169 |           0.42 |        0:35:00 |     1     0     0   100 |
+|    local uptrend ewo nfi 32 |      1 |           2.69 |           2.69 |             3.667 |           0.37 |        0:20:00 |     1     0     0   100 |
+|                 ewo2 nfi 32 |      1 |           2.36 |           2.36 |             2.958 |           0.30 |        1:00:00 |     1     0     0   100 |
+|                   ewo2 cofi |      1 |          -4.34 |          -4.34 |            -5.402 |          -0.54 |        9:20:00 |     0     0     1     0 |
+|                         ewo |     24 |          -0.40 |          -9.55 |            -6.029 |          -0.60 |        0:54:00 |    19     0     5  79.2 |
+|   local uptrend ewo2 nfi 32 |      1 |         -17.80 |         -17.80 |           -29.973 |          -3.00 |        2:45:00 |     0     0     1     0 |
+|                       TOTAL |    398 |           1.35 |         535.92 |           759.594 |          75.96 |        1:26:00 |   327     0    71  82.2 |
+======================================================= SELL REASON STATS ========================================================
+|        Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|--------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+| trailing_stop_loss |     270 |    243     0    27  90.0 |           0.98 |         264.16 |           399.838 |          29.35 |
+|        sell_signal |      94 |     51     0    43  54.3 |          -0.26 |         -24.78 |           -29.066 |          -2.75 |
+|                roi |      33 |     33     0     0   100 |           9.99 |         329.67 |           425.808 |          36.63 |
+|          stop_loss |       1 |      0     0     1     0 |         -33.13 |         -33.13 |           -36.986 |          -3.68 |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2021-11-12 00:00:00 |
+| Backtesting to         | 2022-02-10 09:30:00 |
+| Max open trades        | 9                   |
+|                        |                     |
+| Total/Daily Avg Trades | 398 / 4.42          |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 1759.594 USDT       |
+| Absolute profit        | 759.594 USDT        |
+| Total profit %         | 75.96%              |
+| Trades per day         | 4.42                |
+| Avg. daily profit %    | 0.84%               |
+| Avg. stake amount      | 140.977 USDT        |
+| Total trade volume     | 56108.947 USDT      |
+|                        |                     |
+| Best Pair              | 1EARTH/USDT 100.36% |
+| Worst Pair             | GALAX/USDT -52.21%  |
+| Best trade             | RMRK/USDT 9.99%     |
+| Worst trade            | BCH/USDT -33.13%    |
+| Best day               | 66.988 USDT         |
+| Worst day              | -106.158 USDT       |
+| Days win/draw/lose     | 59 / 17 / 15        |
+| Avg. Duration Winners  | 0:45:00             |
+| Avg. Duration Loser    | 4:34:00             |
+| Rejected Buy signals   | 1598                |
+|                        |                     |
+| Min balance            | 976.778 USDT        |
+| Max balance            | 1759.594 USDT       |
+| Drawdown (Account)     | 22.08%              |
+| Drawdown               | 273.566 USDT        |
+| Drawdown high          | 239.090 USDT        |
+| Drawdown low           | -34.476 USDT        |
+| Drawdown Start         | 2021-12-04 03:10:00 |
+| Drawdown End           | 2021-12-04 05:30:00 |
+| Market change          | -27.01%             |
+================================================
+
+
+===================================================================== BUY TAG STATS ======================================================================
+|                         TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|-----------------------------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|                      nfi 32 |     67 |           1.68 |         112.27 |           127.307 |          12.73 |        0:33:00 |    54     0    13  80.6 |
+|                        ewo2 |     59 |           1.62 |          95.81 |           122.350 |          12.23 |        1:29:00 |    50     0     9  84.7 |
+|               local uptrend |    125 |           0.47 |          59.08 |            81.481 |           8.15 |        0:37:00 |    89     0    36  71.2 |
+|                          bb |     25 |           1.81 |          45.16 |            52.567 |           5.26 |        0:52:00 |    21     0     4  84.0 |
+|      local uptrend ewo ewo2 |      2 |           6.00 |          12.00 |            13.063 |           1.31 |        0:18:00 |     2     0     0   100 |
+|            bb local uptrend |     17 |           0.44 |           7.48 |            11.128 |           1.11 |        0:08:00 |    11     0     6  64.7 |
+|                 ewo2 nfi 32 |      6 |           1.53 |           9.17 |            10.773 |           1.08 |        1:26:00 |     5     0     1  83.3 |
+|    local uptrend ewo nfi 32 |      2 |           4.05 |           8.09 |            10.499 |           1.05 |        0:12:00 |     2     0     0   100 |
+|       bb local uptrend ewo2 |      1 |           6.72 |           6.72 |             9.913 |           0.99 |        0:15:00 |     1     0     0   100 |
+|        local uptrend nfi 32 |     21 |           0.52 |          10.83 |             8.785 |           0.88 |        0:33:00 |    16     0     5  76.2 |
+|   bb local uptrend ewo ewo2 |      1 |           6.73 |           6.73 |             8.690 |           0.87 |        0:15:00 |     1     0     0   100 |
+| bb local uptrend ewo nfi 32 |      1 |           5.15 |           5.15 |             6.713 |           0.67 |        0:10:00 |     1     0     0   100 |
+|                 bb ewo ewo2 |      1 |           2.55 |           2.55 |             3.304 |           0.33 |        0:35:00 |     1     0     0   100 |
+|                    ewo ewo2 |      1 |           2.11 |           2.11 |             2.509 |           0.25 |        1:40:00 |     1     0     0   100 |
+|                         ewo |     24 |          -0.12 |          -2.83 |            -0.565 |          -0.06 |        0:25:00 |    16     0     8  66.7 |
+|                        cofi |     84 |          -0.05 |          -3.96 |            -2.853 |          -0.29 |        1:21:00 |    58     0    26  69.0 |
+|                      bb ewo |     16 |           0.17 |           2.77 |            -3.416 |          -0.34 |        0:45:00 |    10     0     6  62.5 |
+|                   ewo2 cofi |      1 |          -8.18 |          -8.18 |           -10.119 |          -1.01 |        2:40:00 |     0     0     1     0 |
+|            ewo2 cofi nfi 32 |      1 |          -8.18 |          -8.18 |           -10.714 |          -1.07 |        0:55:00 |     0     0     1     0 |
+|   local uptrend ewo2 nfi 32 |      1 |          -8.18 |          -8.18 |           -10.811 |          -1.08 |        0:55:00 |     0     0     1     0 |
+|          local uptrend ewo2 |      2 |          -8.18 |         -16.37 |           -21.343 |          -2.13 |        0:48:00 |     0     0     2     0 |
+|        bb local uptrend ewo |      8 |          -2.70 |         -21.60 |           -24.666 |          -2.47 |        1:32:00 |     4     0     4  50.0 |
+|           local uptrend ewo |      9 |          -2.69 |         -24.24 |           -30.961 |          -3.10 |        0:04:00 |     4     0     5  44.4 |
+|                       TOTAL |    475 |           0.62 |         292.36 |           353.638 |          35.36 |        0:51:00 |   347     0   128  73.1 |
+======================================================= SELL REASON STATS ========================================================
+|        Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|--------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+| trailing_stop_loss |     277 |    277     0     0   100 |           3.12 |         863.19 |          1059.38  |          95.91 |
+|          stop_loss |     115 |      0     0   115     0 |          -8.18 |        -941.14 |         -1147.94  |        -104.57 |
+|        sell_signal |      58 |     45     0    13  77.6 |           2.08 |         120.56 |           155.119 |          13.4  |
+|                roi |      25 |     25     0     0   100 |           9.99 |         249.75 |           287.083 |          27.75 |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2021-11-12 00:00:00 |
+| Backtesting to         | 2022-02-10 09:30:00 |
+| Max open trades        | 9                   |
+|                        |                     |
+| Total/Daily Avg Trades | 475 / 5.28          |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 1353.638 USDT       |
+| Absolute profit        | 353.638 USDT        |
+| Total profit %         | 35.36%              |
+| Trades per day         | 5.28                |
+| Avg. daily profit %    | 0.39%               |
+| Avg. stake amount      | 122.567 USDT        |
+| Total trade volume     | 58219.100 USDT      |
+|                        |                     |
+| Best Pair              | RMRK/USDT 81.74%    |
+| Worst Pair             | BCH/USDT -32.74%    |
+| Best trade             | GALAX/USDT 9.99%    |
+| Worst trade            | BASIC/USDT -8.18%   |
+| Best day               | 48.146 USDT         |
+| Worst day              | -263.794 USDT       |
+| Days win/draw/lose     | 56 / 17 / 18        |
+| Avg. Duration Winners  | 0:39:00             |
+| Avg. Duration Loser    | 1:25:00             |
+| Rejected Buy signals   | 1430                |
+|                        |                     |
+| Min balance            | 877.759 USDT        |
+| Max balance            | 1386.006 USDT       |
+| Drawdown (Account)     | 27.41%              |
+| Drawdown               | 332.933 USDT        |
+| Drawdown high          | 214.462 USDT        |
+| Drawdown low           | -118.471 USDT       |
+| Drawdown Start         | 2021-12-03 22:35:00 |
+| Drawdown End           | 2021-12-04 05:40:00 |
+| Market change          | -27.01%             |
+================================================
+
+
+====================================================================== BUY TAG STATS =======================================================================
+|                           TAG |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|-------------------------------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|                        nfi 32 |     60 |           2.09 |         125.25 |           157.274 |          15.73 |        0:52:00 |    53     0     7  88.3 |
+|                          ewo2 |     55 |           1.52 |          83.59 |           111.598 |          11.16 |        1:45:00 |    46     0     9  83.6 |
+|                 local uptrend |    112 |           0.76 |          85.66 |           109.625 |          10.96 |        0:44:00 |    89     0    23  79.5 |
+|                        bb ewo |     13 |           1.61 |          20.88 |            29.582 |           2.96 |        1:15:00 |    10     0     3  76.9 |
+|              bb local uptrend |     16 |           1.48 |          23.73 |            27.864 |           2.79 |        0:08:00 |    12     0     4  75.0 |
+|                          cofi |     82 |           0.19 |          15.94 |            26.713 |           2.67 |        1:56:00 |    59     0    23  72.0 |
+|                            bb |     24 |           0.92 |          22.01 |            25.088 |           2.51 |        0:56:00 |    20     0     4  83.3 |
+|          local uptrend nfi 32 |     21 |           0.94 |          19.69 |            22.622 |           2.26 |        0:40:00 |    18     0     3  85.7 |
+|        local uptrend ewo ewo2 |      1 |           9.99 |           9.99 |            11.366 |           1.14 |        0:25:00 |     1     0     0   100 |
+|      local uptrend ewo nfi 32 |      2 |           4.05 |           8.09 |            10.599 |           1.06 |        0:12:00 |     2     0     0   100 |
+|         bb local uptrend ewo2 |      1 |           6.72 |           6.72 |            10.573 |           1.06 |        0:15:00 |     1     0     0   100 |
+|          bb local uptrend ewo |      6 |           1.41 |           8.45 |             9.630 |           0.96 |        1:59:00 |     5     0     1  83.3 |
+|     bb local uptrend ewo ewo2 |      1 |           6.73 |           6.73 |             8.678 |           0.87 |        0:15:00 |     1     0     0   100 |
+|                   ewo2 nfi 32 |      2 |           2.77 |           5.53 |             7.195 |           0.72 |        0:38:00 |     2     0     0   100 |
+|   bb local uptrend ewo nfi 32 |      1 |           5.15 |           5.15 |             6.829 |           0.68 |        0:10:00 |     1     0     0   100 |
+|                           ewo |     24 |           0.19 |           4.51 |             6.267 |           0.63 |        0:42:00 |    19     0     5  79.2 |
+|                   bb ewo ewo2 |      1 |           2.55 |           2.55 |             3.600 |           0.36 |        0:35:00 |     1     0     0   100 |
+| local uptrend ewo ewo2 nfi 32 |      1 |           2.93 |           2.93 |             3.565 |           0.36 |        0:05:00 |     1     0     0   100 |
+|                     ewo2 cofi |      1 |          -4.34 |          -4.34 |            -5.471 |          -0.55 |        9:20:00 |     0     0     1     0 |
+|     local uptrend ewo2 nfi 32 |      1 |         -12.67 |         -12.67 |           -18.300 |          -1.83 |        1:50:00 |     0     0     1     0 |
+|             local uptrend ewo |      5 |          -5.56 |         -27.80 |           -28.912 |          -2.89 |        0:06:00 |     2     0     3  40.0 |
+|            local uptrend ewo2 |      3 |          -7.63 |         -22.90 |           -31.277 |          -3.13 |        0:55:00 |     1     0     2  33.3 |
+|                         TOTAL |    433 |           0.90 |         389.70 |           504.710 |          50.47 |        1:08:00 |   344     0    89  79.4 |
+======================================================= SELL REASON STATS ========================================================
+|        Sell Reason |   Sells |   Win  Draws  Loss  Win% |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |
+|--------------------+---------+--------------------------+----------------+----------------+-------------------+----------------|
+| trailing_stop_loss |     266 |    266     0     0   100 |           3.05 |         812.41 |          1057.26  |          90.27 |
+|        sell_signal |      81 |     51     0    30  63.0 |           0.68 |          55.37 |            76.728 |           6.15 |
+|          stop_loss |      59 |      0     0    59     0 |         -12.67 |        -747.81 |          -951.56  |         -83.09 |
+|                roi |      27 |     27     0     0   100 |           9.99 |         269.73 |           322.288 |          29.97 |
+====================================================== LEFT OPEN TRADES REPORT ======================================================
+|   Pair |   Buys |   Avg Profit % |   Cum Profit % |   Tot Profit USDT |   Tot Profit % |   Avg Duration |   Win  Draw  Loss  Win% |
+|--------+--------+----------------+----------------+-------------------+----------------+----------------+-------------------------|
+|  TOTAL |      0 |           0.00 |           0.00 |             0.000 |           0.00 |           0:00 |     0     0     0     0 |
+=============== SUMMARY METRICS ================
+| Metric                 | Value               |
+|------------------------+---------------------|
+| Backtesting from       | 2021-11-12 00:00:00 |
+| Backtesting to         | 2022-02-10 09:30:00 |
+| Max open trades        | 9                   |
+|                        |                     |
+| Total/Daily Avg Trades | 433 / 4.81          |
+| Starting balance       | 1000.000 USDT       |
+| Final balance          | 1504.710 USDT       |
+| Absolute profit        | 504.710 USDT        |
+| Total profit %         | 50.47%              |
+| Trades per day         | 4.81                |
+| Avg. daily profit %    | 0.56%               |
+| Avg. stake amount      | 129.120 USDT        |
+| Total trade volume     | 55909.010 USDT      |
+|                        |                     |
+| Best Pair              | 1EARTH/USDT 99.88%  |
+| Worst Pair             | BCH/USDT -38.02%    |
+| Best trade             | RMRK/USDT 9.99%     |
+| Worst trade            | BASIC/USDT -12.67%  |
+| Best day               | 52.102 USDT         |
+| Worst day              | -203.671 USDT       |
+| Days win/draw/lose     | 60 / 17 / 14        |
+| Avg. Duration Winners  | 0:43:00             |
+| Avg. Duration Loser    | 2:43:00             |
+| Rejected Buy signals   | 1500                |
+|                        |                     |
+| Min balance            | 948.094 USDT        |
+| Max balance            | 1504.710 USDT       |
+| Drawdown (Account)     | 22.89%              |
+| Drawdown               | 282.786 USDT        |
+| Drawdown high          | 235.357 USDT        |
+| Drawdown low           | -47.429 USDT        |
+| Drawdown Start         | 2021-12-03 22:35:00 |
+| Drawdown End           | 2021-12-04 05:40:00 |
+| Market change          | -27.01%             |
+================================================
