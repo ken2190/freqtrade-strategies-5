@@ -1,6 +1,6 @@
 
 
-hello.
+Hello!
 
 Would like to share some information about some freqtrade strategies.
 
