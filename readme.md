@@ -12,7 +12,7 @@ All notes are in french and mix of british.
 ## Series another_test_n
 
 - another_test_1 -> first selection;
-- another_test_2 -> from SELECTED in another_test_1 : second selection.
+- another_test_2 -> from SELECTED(1) in another_test_1 : second selection.
 - another_test_3 -> from SELECTED in another_test_2 : m30 days kucoin stress test. (advanced)
 
 ## Series dry_run_n
