@@ -118,7 +118,7 @@
     "pairlists": [
         {
             "method": "StaticPairList",
-            "number_assets": 50,
+            "number_assets": 80,
             "sort_key": "quoteVolume",
             "min_value": 0,
             "refresh_period": 1800

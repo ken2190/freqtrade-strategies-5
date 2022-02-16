@@ -4,18 +4,32 @@ Hello!
 
 Would like to share some information about some freqtrade strategies.
 
-Please read data-info.txt if don't trust me.
+Please read data-info.txt if you don't trust me.
 
 All notes are in french and mix of british.
 
 
 ## Series another_test_n
 
-another_test_1 -> from tested all from this repo : <https://github.com/PeetCrypto/freqtrade-stuff>  
-another_test_2 -> from SELECTED in another_test_1 : 147 days kucoin and binance, testing multiple markets (miss NFIX)  
-another_test_3 -> from SELECTED in another_test_1 : m30 days kucoin stress test. (advanced)
+- another_test_1 -> first selection;
+- another_test_2 -> from SELECTED in another_test_1 : second selection.
+- another_test_3 -> from SELECTED in another_test_2 : m30 days kucoin stress test. (advanced)
+
+## Series dry_run_n
+
+- dry_run_fail -> more than 3 days out.
+- dry_run_live -> testing.
+- dry_run_win -> minimum 7days in ++.
+
+## Series live
 
 
-- What does we see ? 
+## What does we see ? 
 
 WR is the most important. Entry make WR.
+
+
+## REMEMBER
+
+DONT TRUST ME.  
+Il passera de l'eau sous les ponts.
