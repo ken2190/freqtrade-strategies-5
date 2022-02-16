@@ -1,0 +1,10 @@
+Daily Profit over the last 7 days:
+Day         Profit USDT    Profit EUR    Trades
+----------  -------------  ------------  --------
+2022-02-16  0.000 USDT     0.000 EUR     0 trades
+2022-02-15  0.000 USDT     0.000 EUR     0 trades
+2022-02-14  0.000 USDT     0.000 EUR     0 trades
+2022-02-13  6.552 USDT     5.768 EUR     2 trades
+2022-02-12  5.808 USDT     5.113 EUR     2 trades
+2022-02-11  5.238 USDT     4.612 EUR     2 trades
+2022-02-10  0.000 USDT     0.000 EUR     0 trades
