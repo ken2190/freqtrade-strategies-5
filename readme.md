@@ -2,7 +2,7 @@
 
 hello.
 
-Would like to share some information.
+Would like to share some information about some freqtrade strategies.
 
 
-Please read data-info.txt if you want to check if it's real or not.
+Please read data-info.txt if don't trust me.
